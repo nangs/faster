@@ -113,25 +113,8 @@ var shiftKeyboard = {
     222 : '"'
 }
 
-var hands = {
-  left: {
-    pinky  : ['1','!','q','a','z'],
-    ring   : ['2','@','w','s','x'],
-    middle : ['3','#','e','d','c'],
-    index  : ['4','$','r','f','v','5','%','t','g','b'],
-    thumb  : [" "]
-  },
-  right: {
-    pinky  : ['0',')','p',';',':','/','?','-','_','[','{','\'','"','=','+',']','}','\\','|'],
-    ring   : ['9','(','o','l','.','>'],
-    middle : ['8','*','i','k',',','<'],
-    index  : ['6','^','y','h','n','7','&','u','j','m']
-  }
-}
-
 export default {
   commands: commands,
   keyboard: keyboard,
-  shiftKeyboard: shiftKeyboard,
-  hands: hands
+  shiftKeyboard: shiftKeyboard
 }
