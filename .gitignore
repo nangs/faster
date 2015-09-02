@@ -1,9 +1,7 @@
 .idea
 .DS_Store
-
+npm-debug.log
 node_modules
 web_modules
 packages
-
-
-npm-debug.log
+dist

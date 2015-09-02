@@ -3,8 +3,6 @@
 import Keyboard from './constants/keyboard';
 import KeyCode from './constants/keyCode';
 
-console.log(KeyCode);
-
 var isACommand = function (code){
     for (var command in Keyboard.commands){
         if(command == code){

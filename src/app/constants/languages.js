@@ -14,7 +14,9 @@ var javascriptSnippets = [
 ]
 
 
-export default {
+var languages = {
     "Java" : javaSnippets,
     "JavaScript" : javascriptSnippets
 }
+
+export default languages;

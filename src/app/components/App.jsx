@@ -1,12 +1,13 @@
 'use strict';
 
 var logo = require('./../styles/assets/icon.png');
+import './App.less';
 
 import React from 'react';
 import Snippet from './snippet';
 import Keyboard from './keyboard';
-import KeypressEventHandler from './../KeypressEventHandler'
-import './App.less';
+import KeyboardActions from './../actions/KeyboardActions';
+import GameStore from './../stores/GameStore';
 
 export default React.createClass({
 	mixins: [],
@@ -18,7 +19,6 @@ export default React.createClass({
 	},
 	render: function () {
 		return <div className="container">
-
 			<Snippet />
 			<Keyboard />
 		</div>;
@@ -26,6 +26,7 @@ export default React.createClass({
 });
 
 function componentDidMount() {
-	console.log(KeypressEventHandler);
-	document.addEventListener('keydown', KeypressEventHandler);
+	document.addEventListener('keydown', function(event){
+		KeyboardActions.handleKeypress(event);
+	});
 }

@@ -1,16 +1,14 @@
 'use strict';
 
 import React from 'react';
-import * as languages from './../constants/languages';
-
-console.log(languages);
+import languages from './../constants/languages';
 
 export default React.createClass({
 	mixins: [],
 	componentDidMount: componentDidMount,
 	getInitialState: function(){
 		return {
-      snippet : "walker and friends are in the most time."
+      snippet : getNextSnippet()
 		}
 	},
 	render: function () {
@@ -25,5 +23,26 @@ export default React.createClass({
 });
 
 function componentDidMount() {
+  getNextSnippet();
+}
 
+function getNextSnippet(){
+  var property = pickRandomProperty(languages);
+  var language = languages[property];
+  var snippet = pickRandomSnippet(language);
+  return snippet;
+}
+
+function pickRandomSnippet(language){
+  var index = (Math.round(Math.random())) % language.length
+  return language[index];
+}
+
+function pickRandomProperty(obj) {
+    var result;
+    var count = 0;
+    for (var prop in obj)
+        if (Math.random() < 1/++count)
+           result = prop;
+    return result;
 }
