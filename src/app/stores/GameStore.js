@@ -44,6 +44,8 @@ var game = {
 	typos: []
 };
 
+var index = 0;
+
 class GameStore extends Store {
 	constructor(dispatcher) {
 		super(dispatcher, [keypress]);
