@@ -8,10 +8,7 @@ export default React.createClass({
 	getInitialState: getInitialState,
 	getDefaultProps: getDefaultProps,
 	render: function () {
-    var snippetMarkup = this.props.snippet.split('').map(function(character, index){
-      return (<span key={index}> {character} </span>)
-    });
-
+		var snippetMarkup = this.props.snippet.split('').map(generateCharacter.bind(this));
 		return (<div className="snippet">
       <p> {snippetMarkup} </p>
     </div>)
@@ -28,6 +25,11 @@ function getInitialState(){
 
 function getDefaultProps(){
 	return {
-		snippet: "Default snippet prop"
+		snippet: "Default snippet prop",
+		typos: []
 	}
+}
+
+function generateCharacter(character, index){
+	return (<span key={index} className={this.props.typos[index]}> {character} </span>)
 }

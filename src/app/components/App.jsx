@@ -21,11 +21,11 @@ export default React.createClass({
 		}
 	},
 	render: function () {
-		return <div className="container">
+		return (<div className="container">
 			<Navigation />
-			<Snippet snippet={this.state.snippet}/>
+			<Snippet snippet={this.state.game.snippet} typos={this.state.game.typos} />
 			<Keyboard />
-		</div>;
+		</div>);
 	}
 });
 
