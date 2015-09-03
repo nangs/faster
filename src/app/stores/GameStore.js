@@ -5,6 +5,7 @@ import KeyboardActionTypes from './../constants/actions/KeyboardActions';
 import PayloadSources from './../constants/PayloadSources';
 import DispatchedActionHandler from './../lib/DispatchedActionHandler';
 import AppDispatcher from './../dispatcher/AppDispatcher';
+
 import _ from 'underscore';
 import Keyboard from './../constants/Keyboard';
 import KeyCode from './../constants/KeyCode';
@@ -13,11 +14,10 @@ import Hands from './../constants/Hands';
 import {CORRECT, INCORRECT, UNVISITED} from './../constants/SnippetStates';
 
 var keypress = new DispatchedActionHandler(PayloadSources.View, KeyboardActionTypes.Keypress, (store, action) => {
-	var keypressEvent = action.payload;
+	let keypressEvent = action.payload;
+
 	if(keypressEvent.keyCode === KeyCode.BackSpace)
 		keypressEvent.preventDefault();
-
-  //console.log("The Game store received the payload: ", keypressEvent);
 
 	getNextState(keypressEvent);
 });
@@ -58,9 +58,6 @@ class GameStore extends Store {
 }
 export default new GameStore(AppDispatcher);
 
-/*
-Private methods
-*/
 
 function getNextState(event){
 
@@ -69,9 +66,7 @@ function getNextState(event){
 	var isCommand = _.contains(Keyboard.commands, keyCode);
 	var key = shiftKey ? Keyboard.shiftKeyboard[keyCode] : Keyboard.keyboard[keyCode];
 
-	//console.log("KeyCode: ", keyCode);
-	//console.log("Key: ", key);
-	//console.log("Command: ", isCommand);
+	console.log("KeyCode: ", keyCode, " Key: ", key);
 
 	if(!game.hasStarted){
 		if(keyCode !== KeyCode.Enter) return;
@@ -87,7 +82,6 @@ function getNextState(event){
 	}
 	else{
 		if(shiftKey && keyCode === KeyCode.Shift){
-			//Shift has been pressed and the index should not increase
 			index--;
 		}
 		else if(key === game.snippet[index])
@@ -97,7 +91,6 @@ function getNextState(event){
 		else{
 			game.typos[index] = INCORRECT;
 		}
-		//Concern yourself with the next character in the snippet
 		index++;
 		//Calculate WPM and accuracy
 		if(index === game.snippet.length){
