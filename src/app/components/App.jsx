@@ -27,7 +27,17 @@ export default React.createClass({
 });
 
 function componentDidMount() {
+	GameStore.addChangeListener(handleGameStateUpdates.bind(this));
+
 	document.addEventListener('keydown', function(event){
 		KeyboardActions.handleKeypress(event);
 	});
+}
+
+function handleGameStateUpdates(){
+	this.setState({
+
+	});
+	var g = GameStore.getGame();
+	console.log("G", g);
 }

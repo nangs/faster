@@ -48,7 +48,11 @@ class GameStore extends Store {
 		super(dispatcher, [keypress]);
 	}
 	getGame() {
-		return _extend(settings, performance, game);
+		return {
+			settings: settings,
+			performance: performance,
+			game: game
+		};
 	}
 	getSnippet(){
 		game.snippet = getNextSnippet();
@@ -116,7 +120,6 @@ function getNextState(event){
 		}
 		game.suggestedKeys = getSuggestedKeys(game.snippet.charAt(index));
 	}
-	console.log("Game: ", game);
 }
 
 function getSuggestedKeys (character){
