@@ -75,9 +75,9 @@ function getNextState(event){
 			game.typos[i] = UNVISITED;
 		return
 	}
-	else if(isCommand && keyCode === KeyCode.BackSpace && index > 0){
-		index--;
-		game.typos[index] = UNVISITED;
+	else if(isCommand && keyCode === KeyCode.BackSpace){
+		if(index <= 0) return;
+		game.typos[--index] = UNVISITED;
 		preformance.backspaceFrequency++;
 	}
 	else{
