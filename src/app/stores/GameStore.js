@@ -6,9 +6,9 @@ import PayloadSources from './../constants/PayloadSources';
 import DispatchedActionHandler from './../lib/DispatchedActionHandler';
 import AppDispatcher from './../dispatcher/AppDispatcher';
 import _ from 'underscore';
-import Keyboard from './../constants/keyboard';
-import KeyCode from './../constants/keyCode';
-import Languages from './../constants/languages';
+import Keyboard from './../constants/Keyboard';
+import KeyCode from './../constants/KeyCode';
+import Languages from './../constants/Languages';
 import Hands from './../constants/Hands';
 
 var keypress = new DispatchedActionHandler(PayloadSources.View, KeyboardActionTypes.Keypress, (store, action) => {

@@ -1,9 +1,6 @@
 'use strict';
 
 import React from 'react';
-import keyboard from './../constants/keyboard'
-
-console.log(keyboard);
 
 export default React.createClass({
 	mixins: [],
