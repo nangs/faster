@@ -64,8 +64,6 @@ const CORRECT = "correct";
 const INCORRECT = "incorrect";
 const UNVISITED = "unvisted";
 
-var hasStarted = game.hasStarted;
-var index = 0;
 
 function getNextState(event){
 
