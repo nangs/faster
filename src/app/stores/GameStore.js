@@ -38,7 +38,7 @@ var preformance = {
 var game = {
 	hasStarted: false,
 	language: false,
-	snippet: "",
+	snippet: getNextSnippet(),
 	suggestedKeys: [],
 	typos: []
 };
@@ -53,10 +53,6 @@ class GameStore extends Store {
 			performance: performance,
 			game: game
 		};
-	}
-	getSnippet(){
-		game.snippet = getNextSnippet();
-		return game.snippet;
 	}
 }
 export default new GameStore(AppDispatcher);
@@ -110,11 +106,11 @@ function getNextState(event){
 		index++;
 		//Calculate WPM and accuracy
 		if(index === game.snippet.length){
-			debugger;
 				//Reset the game
 				index = 0;
 				game.typos = [];
 				game.backspaceFrequency = 0;
+				game.snippet = getNextSnippet();
 				game.hasStarted = false;
 				console.log("Game Ended: ", game.hasStarted);
 		}

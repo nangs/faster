@@ -13,8 +13,11 @@ export default React.createClass({
 	mixins: [],
 	componentDidMount: componentDidMount,
 	getInitialState: function(){
+		var game = GameStore.getGame();
 		return {
-			snippet: GameStore.getSnippet()
+			game: game.game,
+			settings: game.settings,
+			performance: game.performance
 		}
 	},
 	render: function () {
@@ -35,9 +38,10 @@ function componentDidMount() {
 }
 
 function handleGameStateUpdates(){
+	var game = GameStore.getGame();
 	this.setState({
-
+		game: game.game,
+		settings: game.settings,
+		performance: game.performance
 	});
-	var g = GameStore.getGame();
-	console.log("G", g);
 }
