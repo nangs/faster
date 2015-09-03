@@ -15,7 +15,8 @@ var keypress = new DispatchedActionHandler(PayloadSources.View, KeyboardActionTy
 	var keypressEvent = action.payload;
 	if(keypressEvent.keyCode === KeyCode.BackSpace)
 		keypressEvent.preventDefault();
-  console.log("The Game store received the payload: ", keypressEvent);
+
+  //console.log("The Game store received the payload: ", keypressEvent);
 
 	getNextState(keypressEvent);
 });
@@ -30,28 +31,17 @@ var settings = {
 
 var preformance = {
 	wpm: 0,
-	accuracy: 0
+	accuracy: 0,
+	backspaceFrequency: 0
 };
 
 var game = {
 	hasStarted: false,
 	language: false,
 	snippet: "",
-	index: 0,
 	suggestedKeys: [],
-	typos: [],
-	state: {}
+	typos: []
 };
-
-let correct = {
-	color: "green",
-	sound: "correctfile",
-}
-
-let incorrect = {
-	color: "red",
-	sound: "incorrectfile"
-}
 
 class GameStore extends Store {
 	constructor(dispatcher) {
@@ -70,11 +60,12 @@ export default new GameStore(AppDispatcher);
 /*
 Private methods
 */
+const CORRECT = "correct";
+const INCORRECT = "incorrect";
+const UNVISITED = "unvisted";
+
 var hasStarted = game.hasStarted;
-var index = game.index;
-var snippet = game.snippet;
-var beginTime = 0;
-var backspaceFrequency = 0;
+var index = 0;
 
 function getNextState(event){
 
@@ -83,59 +74,49 @@ function getNextState(event){
 	var isCommand = _.contains(Keyboard.commands, keyCode);
 	var key = shiftKey ? Keyboard.shiftKeyboard[keyCode] : Keyboard.keyboard[keyCode];
 
-	console.log("KeyCode: ", keyCode);
-	console.log("Key: ", key);
-	console.log("Command: ", isCommand);
+	//console.log("KeyCode: ", keyCode);
+	//console.log("Key: ", key);
+	//console.log("Command: ", isCommand);
 
-	if(!game.hasStarted && keyCode === KeyCode.Enter){
+	if(!game.hasStarted){
+		if(keyCode !== KeyCode.Enter) return;
 		game.hasStarted = true;
-		console.log("Game has started: ", game.hasStarted);
+		for(var i = 0; i < game.snippet.length; i++)
+			game.typos[i] = UNVISITED;
+		return
 	}
-	else if(isCommand && keyCode === KeyCode.BackSpace && game.index > 0){
-
+	else if(isCommand && keyCode === KeyCode.BackSpace && index > 0){
+		index--;
+		game.typos[index] = UNVISITED;
+		preformance.backspaceFrequency++;
 	}
 	else{
 		if(shiftKey && keyCode === KeyCode.Shift){
 			//Shift has been pressed and the index should not increase
+			index--;
 		}
-		else if(key === game.snippet[game.index])
+		else if(key === game.snippet[index])
 		{
-			console.log(key, "is found at", game.snippet[game.index]);
-			//character is correct
+			game.typos[index] = CORRECT;
 		}
 		else{
-			console.log(key, "is found NOT at", game.snippet[game.index]);
-			//Character is incorrect
+			game.typos[index] = INCORRECT;
 		}
 		//Concern yourself with the next character in the snippet
-		game.index++;
+		index++;
 		//Calculate WPM and accuracy
-		if(game.index === game.snippet.length){
+		if(index === game.snippet.length){
 			debugger;
 				//Reset the game
-				game.index = 0;
-				//isTiming = false;
+				index = 0;
+				game.typos = [];
+				game.backspaceFrequency = 0;
 				game.hasStarted = false;
 				console.log("Game Ended: ", game.hasStarted);
 		}
-		var suggestedKeys = getSuggestedKeys(key);
-		console.log("suggestedKeys", suggestedKeys);
+		game.suggestedKeys = getSuggestedKeys(game.snippet.charAt(index));
 	}
-}
-
-function reset(){
-	let newGame = {
-		preformance : {
-			hasStarted: false,
-			beginTime: 0,
-			backspaceFrequency: 0,
-		},
-		snippet: "This is the snippet",
-		index: 0,
-		typos: [],
-		state: {}
-	}
-	return _.extendOwn(game, newGame);
+	console.log("Game: ", game);
 }
 
 function getSuggestedKeys (character){
