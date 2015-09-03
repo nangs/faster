@@ -10,6 +10,7 @@ import Keyboard from './../constants/Keyboard';
 import KeyCode from './../constants/KeyCode';
 import Languages from './../constants/Languages';
 import Hands from './../constants/Hands';
+import {CORRECT, INCORRECT, UNVISITED} from './../constants/SnippetStates';
 
 var keypress = new DispatchedActionHandler(PayloadSources.View, KeyboardActionTypes.Keypress, (store, action) => {
 	var keypressEvent = action.payload;
@@ -60,10 +61,6 @@ export default new GameStore(AppDispatcher);
 /*
 Private methods
 */
-const CORRECT = "correct";
-const INCORRECT = "incorrect";
-const UNVISITED = "unvisted";
-
 
 function getNextState(event){
 
