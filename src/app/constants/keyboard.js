@@ -1,7 +1,7 @@
 'use strict'
 
-var commands = [8, 9,13,16,17,18,19,20,46];
-var keyboard = {
+let commands = [8, 9,13,16,17,18,19,20,46];
+let keyboard = {
     8   : -1, //backspace
     9   : -2, //tab
     13  : -3, //enter
@@ -62,7 +62,7 @@ var keyboard = {
     222 : '\''
 }
 
-var shiftKeyboard = {
+let shiftKeyboard = {
     219 : '{',
     221 : '}',
     55  : '&',
