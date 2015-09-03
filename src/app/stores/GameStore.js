@@ -13,6 +13,8 @@ import Hands from './../constants/Hands';
 
 var keypress = new DispatchedActionHandler(PayloadSources.View, KeyboardActionTypes.Keypress, (store, action) => {
 	var keypressEvent = action.payload;
+	if(keypressEvent.keyCode === KeyCode.BackSpace)
+		keypressEvent.preventDefault();
   console.log("The Game store received the payload: ", keypressEvent);
 
 	getNextState(keypressEvent);
