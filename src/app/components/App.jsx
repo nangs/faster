@@ -1,11 +1,11 @@
 'use strict';
 
-var logo = require('./../styles/assets/icon.png');
 import './App.less';
 
 import React from 'react';
-import Snippet from './snippet';
-import Keyboard from './keyboard';
+import Navigation from './Navigation';
+import Snippet from './Snippet';
+import Keyboard from './Keyboard';
 import KeyboardActions from './../actions/KeyboardActions';
 import GameStore from './../stores/GameStore';
 
@@ -14,12 +14,13 @@ export default React.createClass({
 	componentDidMount: componentDidMount,
 	getInitialState: function(){
 		return {
-
+			snippet: GameStore.getSnippet()
 		}
 	},
 	render: function () {
 		return <div className="container">
-			<Snippet />
+			<Navigation />
+			<Snippet snippet={this.state.snippet}/>
 			<Keyboard />
 		</div>;
 	}
