@@ -27,7 +27,8 @@ var settings = {
 	playSounds: false,
 	showHands: false,
 	showKeyboard: false,
-	isTiming: false
+	isTiming: false,
+	language: false
 };
 
 var preformance = {
@@ -38,7 +39,6 @@ var preformance = {
 
 var game = {
 	hasStarted: false,
-	language: false,
 	snippet: getNextSnippet(),
 	suggestedKeys: [],
 	typos: []
