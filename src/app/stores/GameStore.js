@@ -98,6 +98,8 @@ function getNextState(event){
 		index++;
 		stats.wpm = getWPM();
 		stats.accuracy = getAccuracy();
+		game.suggestedKeys = getSuggestedKeys(game.snippet.charAt(index));
+
 		if(index === game.snippet.length){
 				//Reset the game
 				index = 0;
@@ -110,7 +112,6 @@ function getNextState(event){
 				game.hasStarted = false;
 				console.log("Game Ended: ", game.hasStarted);
 		}
-		game.suggestedKeys = getSuggestedKeys(game.snippet.charAt(index));
 	}
 }
 
