@@ -7,7 +7,7 @@ import DispatchedActionHandler from './../lib/DispatchedActionHandler';
 import AppDispatcher from './../dispatcher/AppDispatcher';
 
 import _ from 'underscore';
-import Keyboard from './../constants/Keyboard';
+import {keyboard, shiftKeyboard} from './../constants/Keyboard';
 import KeyCode from './../constants/KeyCode';
 import Languages from './../constants/Languages';
 import Hands from './../constants/Hands';
@@ -66,8 +66,7 @@ function getNextState(event){
 
 	var {keyCode, shiftKey} = event;
 
-	var isCommand = _.contains(Keyboard.commands, keyCode);
-	var key = shiftKey ? Keyboard.shiftKeyboard[keyCode] : Keyboard.keyboard[keyCode];
+	var key = shiftKey ? shiftKeyboard[keyCode] : keyboard[keyCode];
 
 	console.log("KeyCode: ", keyCode, " Key: ", key);
 

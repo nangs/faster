@@ -1,7 +1,6 @@
 'use strict'
 
-let commands = [8, 9,13,16,17,18,19,20,46];
-let keyboard = {
+export const keyboard = {
     8   : -1, //backspace
     9   : -2, //tab
     13  : -3, //enter
@@ -62,7 +61,7 @@ let keyboard = {
     222 : '\''
 }
 
-let shiftKeyboard = {
+export const shiftKeyboard = {
     219 : '{',
     221 : '}',
     55  : '&',
@@ -111,10 +110,4 @@ let shiftKeyboard = {
     192 : '~',
     220 : '|',
     222 : '"'
-}
-
-export default {
-  commands: commands,
-  keyboard: keyboard,
-  shiftKeyboard: shiftKeyboard
 }
