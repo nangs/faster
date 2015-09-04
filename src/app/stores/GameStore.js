@@ -106,8 +106,8 @@ function getNextState(event){
 				beginTime = 0;
 				stats.wpm = 0;
 				stats.accuracy = 0;
+				stats.backspaceFrequency = 0;
 				game.typos = [];
-				game.backspaceFrequency = 0;
 				game.snippet = getNextSnippet();
 				game.hasStarted = false;
 				console.log("Game Ended: ", game.hasStarted);
