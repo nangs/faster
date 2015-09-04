@@ -97,12 +97,13 @@ function getNextState(event){
 		}
 		index++;
 		stats.wpm = getWPM();
-		//Calculate WPM and accuracy
+		stats.accuracy = getAccuracy();
 		if(index === game.snippet.length){
 				//Reset the game
 				index = 0;
 				beginTime = 0;
 				stats.wpm = 0;
+				stats.accuracy = 0;
 				game.typos = [];
 				game.backspaceFrequency = 0;
 				game.snippet = getNextSnippet();
@@ -128,13 +129,11 @@ function getWPM() {
 }
 
 function getAccuracy() {
-		var numberTypos = 0;
-		for(var i = 0; i < game.typos.length; i++){
-				if(game.typos[i] == true){
-						numberTypos++;
-				}
-		}
-    return 1 - (numberTypos/game.snippet.length);
+		let occurences = _.countBy(game.typos);
+		let c = occurences[CORRECT] || 0;
+		let i = occurences[INCORRECT] || 0;
+    let percentage = 100 * (c / (c + i));
+		return Math.round(percentage);
 }
 
 function getNextSnippet(){
