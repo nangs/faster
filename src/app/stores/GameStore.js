@@ -45,6 +45,7 @@ var game = {
 };
 
 var index = 0;
+var beginTime = 0;
 
 class GameStore extends Store {
 	constructor(dispatcher) {
@@ -73,6 +74,7 @@ function getNextState(event){
 	if(!game.hasStarted){
 		if(keyCode !== KeyCode.Enter) return;
 		game.hasStarted = true;
+		beginTime = (new Date).getTime();
 		for(var i = 0; i < game.snippet.length; i++)
 			game.typos[i] = UNVISITED;
 		return
@@ -94,10 +96,13 @@ function getNextState(event){
 			game.typos[index] = INCORRECT;
 		}
 		index++;
+		stats.wpm = getWPM();
 		//Calculate WPM and accuracy
 		if(index === game.snippet.length){
 				//Reset the game
 				index = 0;
+				beginTime = 0;
+				stats.wpm = 0;
 				game.typos = [];
 				game.backspaceFrequency = 0;
 				game.snippet = getNextSnippet();
@@ -117,10 +122,9 @@ function getSuggestedKeys (character){
 	}
 }
 
-function getWPM(length, beginTime) {
-    var currentTime = (new Date).getTime();
-    var totalTime = currentTime - beginTime;
-    return Math.round(length/totalTime * 7500);
+function getWPM() {
+    let totalTime = (new Date).getTime() - beginTime;
+    return Math.round(game.snippet.length/totalTime * 7500);
 }
 
 function getAccuracy() {
