@@ -16,7 +16,7 @@ import {CORRECT, INCORRECT, UNVISITED} from './../constants/SnippetStates';
 var keypress = new DispatchedActionHandler(PayloadSources.View, KeyboardActionTypes.Keypress, (store, action) => {
 	let keypressEvent = action.payload;
 
-	if(keypressEvent.keyCode === KeyCode.BackSpace)
+	if(keypressEvent.keyCode === KeyCode.BackSpace || keypressEvent.keyCode === KeyCode.Space)
 		keypressEvent.preventDefault();
 
 	getNextState(keypressEvent);

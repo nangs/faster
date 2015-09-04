@@ -7,5 +7,6 @@ export default {
   Alt: 18,
   Pause: 19,
   CapLocks: 20,
+  Space: 32,
   Delete: 46
 }
