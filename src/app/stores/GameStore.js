@@ -22,30 +22,11 @@ var keypress = new DispatchedActionHandler(PayloadSources.View, KeyboardActionTy
 	getNextState(keypressEvent);
 });
 
-
-var settings = {
-	playSounds: false,
-	showHands: false,
-	showKeyboard: false,
-	isTiming: false,
-	language: false
-};
-
-var stats = {
-	wpm: 0,
-	accuracy: 0,
-	backspaceFrequency: 0
-};
-
-var game = {
-	hasStarted: false,
-	snippet: getNextSnippet(),
-	suggestedKeys: [],
-	typos: []
-};
-
 var index = 0;
 var beginTime = 0;
+var settings, stats, game;
+settings = stats = game = {};
+setup();
 
 class GameStore extends Store {
 	constructor(dispatcher) {
@@ -68,50 +49,56 @@ function getNextState(event){
 
 	var key = shiftKey ? shiftKeyboard[keyCode] : keyboard[keyCode];
 
-	console.log("KeyCode: ", keyCode, " Key: ", key);
-
 	if(!game.hasStarted){
 		if(keyCode !== KeyCode.Enter) return;
 		game.hasStarted = true;
 		beginTime = (new Date).getTime();
-		for(var i = 0; i < game.snippet.length; i++)
-			game.typos[i] = UNVISITED;
-		return
 	}
-	else if(isCommand && keyCode === KeyCode.BackSpace){
-		if(index <= 0) return;
-		game.typos[--index] = UNVISITED;
-		stats.backspaceFrequency++;
+	else if(shiftKey && keyCode === KeyCode.Shift){
+
 	}
 	else{
-		if(shiftKey && keyCode === KeyCode.Shift){
-			index--;
+		if(keyCode === KeyCode.BackSpace){
+			if(index <= 0) return;
+			game.typos[--index] = UNVISITED;
+			stats.backspaceFrequency++;
 		}
 		else if(key === game.snippet[index])
 		{
-			game.typos[index] = CORRECT;
+			game.typos[index++] = CORRECT;
 		}
 		else{
-			game.typos[index] = INCORRECT;
+			game.typos[index++] = INCORRECT;
 		}
-		index++;
 		stats.wpm = getWPM();
 		stats.accuracy = getAccuracy();
 		game.suggestedKeys = getSuggestedKeys(game.snippet.charAt(index));
 
 		if(index === game.snippet.length){
-				//Reset the game
 				index = 0;
 				beginTime = 0;
-				stats.wpm = 0;
-				stats.accuracy = 0;
-				stats.backspaceFrequency = 0;
-				game.typos = [];
-				game.snippet = getNextSnippet();
-				game.hasStarted = false;
-				console.log("Game Ended: ", game.hasStarted);
+				setup();
 		}
 	}
+}
+
+function setup(){
+	_.extend(stats, {
+		wpm: 0,
+		accuracy: 0,
+		backspaceFrequency: 0
+	});
+	_.extend(game, {
+		hasStarted: false,
+		snippet: getNextSnippet(),
+		suggestedKeys: [],
+		typos: [],
+		isShift: false
+	});
+	_.extend(game, {
+		typos: Array.apply(null, {length: game.snippet.length}).map(() => {return UNVISITED;}),
+		suggestedKeys: getSuggestedKeys(game.snippet.charAt(index))
+	});
 }
 
 function getSuggestedKeys (character){
