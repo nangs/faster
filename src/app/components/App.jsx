@@ -26,7 +26,7 @@ export default React.createClass({
 			<Navigation />
 			<Statistics stats={this.state.stats} />
 			<Snippet snippet={this.state.game.snippet} typos={this.state.game.typos} />
-			<Keyboard suggestions={this.state.game.suggestedKeys}/>
+			<Keyboard suggestedKeys={this.state.game.suggestedKeys}/>
 		</div>);
 	}
 });

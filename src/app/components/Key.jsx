@@ -11,7 +11,7 @@ export default React.createClass({
 	getDefaultProps: getDefaultProps,
 	render: function () {
 		var {
-			suggestions,
+			suggestedKeys,
 			defaultKey,
 			shiftKey,
 			size,
@@ -19,7 +19,7 @@ export default React.createClass({
 			side
 		} = this.props;
 
-		let suggest = (shouldSuggest(defaultKey, suggestions) || shouldSuggest(shiftKey, suggestions)) ? "suggest" : "";
+		let suggest = (shouldSuggest(defaultKey, suggestedKeys) || shouldSuggest(shiftKey, suggestedKeys)) ? "suggest" : "";
 		let parent = ["key", size, type, side, suggest].join(" ");
 
 		var off = defaultKey;
@@ -45,7 +45,7 @@ function getInitialState(){
 
 function getDefaultProps(){
 	return {
-		suggestions: [],
+		suggestedKeys: [],
 		defaultKey: "",
 		shiftKey: "",
 		size: "one",
@@ -54,6 +54,6 @@ function getDefaultProps(){
 	}
 }
 
-function shouldSuggest(character, suggestions){
-	return (_.contains(suggestions, character));
+function shouldSuggest(character, suggestedKeys){
+	return (_.contains(suggestedKeys, character));
 }
