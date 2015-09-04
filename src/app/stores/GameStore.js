@@ -125,6 +125,7 @@ function getSuggestedKeys (character){
 
 function getWPM() {
     let totalTime = (new Date).getTime() - beginTime;
+		if(totalTime === 0) return 0;
     return Math.round(game.snippet.length/totalTime * 7500);
 }
 
@@ -132,6 +133,7 @@ function getAccuracy() {
 		let occurences = _.countBy(game.typos);
 		let c = occurences[CORRECT] || 0;
 		let i = occurences[INCORRECT] || 0;
+		if(i === 0 && c === 0) return 0;
     let percentage = 100 * (c / (c + i));
 		return Math.round(percentage);
 }
