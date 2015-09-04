@@ -17,7 +17,7 @@ export default React.createClass({
 		return {
 			game: game.game,
 			settings: game.settings,
-			performance: game.performance
+			stats: game.stats
 		}
 	},
 	render: function () {
@@ -42,6 +42,6 @@ function handleGameStateUpdates(){
 	this.setState({
 		game: game.game,
 		settings: game.settings,
-		performance: game.performance
+		stats: game.stats
 	});
 }

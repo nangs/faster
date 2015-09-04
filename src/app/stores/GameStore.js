@@ -31,7 +31,7 @@ var settings = {
 	language: false
 };
 
-var preformance = {
+var stats = {
 	wpm: 0,
 	accuracy: 0,
 	backspaceFrequency: 0
@@ -53,7 +53,7 @@ class GameStore extends Store {
 	getGame() {
 		return {
 			settings: settings,
-			performance: performance,
+			stats: stats,
 			game: game
 		};
 	}
@@ -80,7 +80,7 @@ function getNextState(event){
 	else if(isCommand && keyCode === KeyCode.BackSpace){
 		if(index <= 0) return;
 		game.typos[--index] = UNVISITED;
-		preformance.backspaceFrequency++;
+		stats.backspaceFrequency++;
 	}
 	else{
 		if(shiftKey && keyCode === KeyCode.Shift){
