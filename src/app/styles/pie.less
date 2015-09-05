@@ -1,0 +1,29 @@
+.accuracy {
+  position: relative;
+
+  span {
+    position: absolute;
+    top: 0;
+    display: block;
+    width: 100px;
+    left: 0;
+    text-align: center;
+    transform: translateY(28%);
+    height: 100%;
+    font-size: 2em;
+  }
+
+  svg {
+    width: 100px; height: 100px;
+    transform: rotate(-90deg);
+    background: green;
+    border-radius: 50%;
+
+    circle {
+      fill: red;
+      stroke: green;
+      stroke-width: 32;
+      stroke-dasharray: 38 100; /* for 38% */
+    }
+  }
+}
