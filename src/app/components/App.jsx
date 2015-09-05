@@ -14,12 +14,7 @@ export default React.createClass({
 	mixins: [],
 	componentDidMount: componentDidMount,
 	getInitialState: function(){
-		var game = GameStore.getGame();
-		return {
-			game: game.game,
-			settings: game.settings,
-			stats: game.stats
-		}
+		return getGame();
 	},
 	render: function () {
 		return (<div className="container">
@@ -40,11 +35,25 @@ function componentDidMount() {
 }
 
 function handleGameStateUpdates(){
-	var game = GameStore.getGame();
-	console.log(game);
-	this.setState({
-		game: game.game,
-		settings: game.settings,
-		stats: game.stats
-	});
+	this.setState(getGame());
+}
+
+function getGame(){
+	var [wpm, accuracy, backspaceFrequency, hasStarted, snippet, typos, suggestedKeys] = GameStore.getGame();
+	return {
+		game: {
+			hasStarted: hasStarted,
+			snippet: snippet,
+			typos: typos,
+			suggestedKeys: suggestedKeys
+		},
+		settings: {
+
+		},
+		stats: {
+			wpm: wpm,
+			accuracy: accuracy,
+			backspaceFrequency: backspaceFrequency
+		}
+	}
 }

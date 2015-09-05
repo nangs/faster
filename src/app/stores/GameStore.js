@@ -22,10 +22,9 @@ var keypress = new DispatchedActionHandler(PayloadSources.View, KeyboardActionTy
 	getNextState(keypressEvent);
 });
 
-var index = 0;
-var beginTime = 0;
-var settings, stats, game;
-settings = stats = game = {};
+let beginTime, wpm, accuracy, backspaceFrequency;
+let hasStarted, index, snippet, typos, suggestedKeys;
+
 setup();
 
 class GameStore extends Store {
@@ -33,11 +32,7 @@ class GameStore extends Store {
 		super(dispatcher, [keypress]);
 	}
 	getGame() {
-		return {
-			settings: settings,
-			stats: stats,
-			game: game
-		};
+		return [wpm, accuracy, backspaceFrequency, hasStarted, snippet, typos, suggestedKeys];
 	}
 }
 export default new GameStore(AppDispatcher);
@@ -49,9 +44,9 @@ function getNextState(event){
 
 	var key = shiftKey ? shiftKeyboard[keyCode] : keyboard[keyCode];
 
-	if(!game.hasStarted){
+	if(!hasStarted){
 		if(keyCode !== KeyCode.Enter) return;
-		game.hasStarted = true;
+		hasStarted = true;
 		beginTime = (new Date).getTime();
 	}
 	else if(shiftKey && keyCode === KeyCode.Shift){
@@ -60,45 +55,29 @@ function getNextState(event){
 	else{
 		if(keyCode === KeyCode.BackSpace){
 			if(index <= 0) return;
-			game.typos[--index] = UNVISITED;
-			stats.backspaceFrequency++;
+			typos[--index] = UNVISITED;
+			backspaceFrequency++;
 		}
-		else if(key === game.snippet[index])
+		else if(key === snippet[index])
 		{
-			game.typos[index++] = CORRECT;
+			typos[index++] = CORRECT;
 		}
 		else{
-			game.typos[index++] = INCORRECT;
+			typos[index++] = INCORRECT;
 		}
-		stats.wpm = getWPM();
-		stats.accuracy = getAccuracy();
-		game.suggestedKeys = getSuggestedKeys(game.snippet.charAt(index));
+		wpm = getWPM();
+		accuracy = getAccuracy();
+		suggestedKeys = getSuggestedKeys(snippet.charAt(index));
 
-		if(index === game.snippet.length){
-				index = 0;
-				beginTime = 0;
-				setup();
-		}
+		if(index === snippet.length) setup();
 	}
 }
 
 function setup(){
-	_.extend(stats, {
-		wpm: 0,
-		accuracy: 0,
-		backspaceFrequency: 0
-	});
-	_.extend(game, {
-		hasStarted: false,
-		snippet: getNextSnippet(),
-		suggestedKeys: [],
-		typos: [],
-		isShift: false
-	});
-	_.extend(game, {
-		typos: Array.apply(null, {length: game.snippet.length}).map(() => {return UNVISITED;}),
-		suggestedKeys: getSuggestedKeys(game.snippet.charAt(index))
-	});
+	wpm = accuracy = backspaceFrequency = hasStarted = beginTime = index = 0;
+	snippet = getNextSnippet();
+	typos = Array.apply(null, {length: snippet.length}).map(() => {return UNVISITED;});
+	suggestedKeys = getSuggestedKeys(snippet.charAt(index))
 }
 
 function getSuggestedKeys (character){
@@ -113,11 +92,11 @@ function getSuggestedKeys (character){
 function getWPM() {
     let totalTime = (new Date).getTime() - beginTime;
 		if(totalTime === 0) return 0;
-    return Math.round(game.snippet.length/totalTime * 7500);
+    return Math.round(snippet.length/totalTime * 7500);
 }
 
 function getAccuracy() {
-		let occurences = _.countBy(game.typos);
+		let occurences = _.countBy(typos);
 		let c = occurences[CORRECT] || 0;
 		let i = occurences[INCORRECT] || 0;
 		if(i === 0 && c === 0) return 0;
