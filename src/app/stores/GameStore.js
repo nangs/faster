@@ -48,6 +48,8 @@ function getNextState(event){
 		if(keyCode !== KeyCode.Enter) return;
 		hasStarted = true;
 		beginTime = (new Date).getTime();
+		snippet = getNextSnippet();
+		suggestedKeys = getSuggestedKeys(snippet.charAt(index));
 	}
 	else if(shiftKey && keyCode === KeyCode.Shift){
 
@@ -75,9 +77,11 @@ function getNextState(event){
 
 function setup(){
 	wpm = accuracy = backspaceFrequency = hasStarted = beginTime = index = 0;
-	snippet = getNextSnippet();
+	//snippet = getNextSnippet();
+	snippet = "Press enter to start!";
+	suggestedKeys = ["enter"];
 	typos = Array.apply(null, {length: snippet.length}).map(() => {return UNVISITED;});
-	suggestedKeys = getSuggestedKeys(snippet.charAt(index))
+	//suggestedKeys = getSuggestedKeys(snippet.charAt(index))
 }
 
 function getSuggestedKeys (character){

@@ -60,7 +60,7 @@ export default React.createClass({
 						<Key suggestedKeys={S} defaultKey="l" size="one" type={LETTER} />
 						<Key suggestedKeys={S} defaultKey=";" shiftKey=":" size="one" type={SYMBOL} />
 						<Key suggestedKeys={S} defaultKey="&quot;" shiftKey="&apos;" size="one" type={SYMBOL} />
-						<Key defaultKey="enter" size="two" side="r" type={CONTROL}/>
+						<Key suggestedKeys={S} defaultKey="enter" size="two" side="r" type={CONTROL}/>
           </section>
           <section className="key-row">
 						<Key defaultKey="shft" size="two-two-half" side="l" type={CONTROL}/>
