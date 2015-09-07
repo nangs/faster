@@ -8,11 +8,14 @@ export default React.createClass({
 	getInitialState: getInitialState,
 	getDefaultProps: getDefaultProps,
 	render: function () {
-    //let accuracy = this.props.percentage + "%";
     let portionToFill = {
       strokeDasharray: "95 189"
     }
-		return (<div className="words-per-minute">
+		let display = {
+			display: this.props.show ? "inline-block" : "none"
+		}
+
+		return (<div className="words-per-minute" style={display}>
 			<svg viewBox="0 0 32 32">
 				<defs>
 					<clipPath id="cut-off-bottom">
@@ -35,6 +38,7 @@ function getInitialState(){
 
 function getDefaultProps(){
 	return {
-    percentage: 100
+    percentage: 100,
+		show: true
 	}
 }

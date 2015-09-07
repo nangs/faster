@@ -2,6 +2,7 @@
 
 import Store from './../lib/Store';
 import KeyboardActionTypes from './../constants/actions/KeyboardActions';
+import SettingsActionTypes from './../constants/actions/SettingsActions';
 import PayloadSources from './../constants/PayloadSources';
 import DispatchedActionHandler from './../lib/DispatchedActionHandler';
 import AppDispatcher from './../dispatcher/AppDispatcher';
@@ -22,16 +23,23 @@ var keypress = new DispatchedActionHandler(PayloadSources.View, KeyboardActionTy
 	getNextState(keypressEvent);
 });
 
+var showStatistics = new DispatchedActionHandler(PayloadSources.View, SettingsActionTypes.ShowStatistics, (store, action) => {
+	settings.showStatistics = !settings.showStatistics;
+});
+
 let beginTime, wpm, accuracy;
 let hasStarted, index, snippet, typos, suggestedKeys;
+let settings = {
+	showStatistics: true
+}
 setup();
 
 class GameStore extends Store {
 	constructor(dispatcher) {
-		super(dispatcher, [keypress]);
+		super(dispatcher, [keypress, showStatistics]);
 	}
 	getGame() {
-		return [wpm, accuracy, hasStarted, snippet, typos, suggestedKeys];
+		return [wpm, accuracy, hasStarted, snippet, typos, suggestedKeys, settings];
 	}
 }
 export default new GameStore(AppDispatcher);

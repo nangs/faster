@@ -23,8 +23,8 @@ export default React.createClass({
 			<Navigation />
 			<div id="game">
 				<div className="statistics">
-					<Speedometer />
-					<Pie percentage={this.state.stats.accuracy} />
+					<Speedometer show={this.state.settings.showStatistics}/>
+					<Pie percentage={this.state.stats.accuracy} show={this.state.settings.showStatistics}/>
 				</div>
 				<Snippet snippet={this.state.game.snippet} typos={this.state.game.typos} />
 				<Hands />
@@ -47,7 +47,7 @@ function handleGameStateUpdates(){
 }
 
 function getGame(){
-	var [wpm, accuracy, hasStarted, snippet, typos, suggestedKeys] = GameStore.getGame();
+	var [wpm, accuracy, hasStarted, snippet, typos, suggestedKeys, settings] = GameStore.getGame();
 	return {
 		game: {
 			hasStarted: hasStarted,
@@ -55,9 +55,7 @@ function getGame(){
 			typos: typos,
 			suggestedKeys: suggestedKeys
 		},
-		settings: {
-
-		},
+		settings: settings,
 		stats: {
 			wpm: wpm,
 			accuracy: accuracy
