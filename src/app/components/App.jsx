@@ -20,10 +20,12 @@ export default React.createClass({
 	render: function () {
 		return (<div className="container">
 			<Navigation />
-			<Pie percentage={this.state.stats.accuracy} />
-			<Statistics stats={this.state.stats} />
-			<Snippet snippet={this.state.game.snippet} typos={this.state.game.typos} />
-			<Keyboard suggestedKeys={this.state.game.suggestedKeys}/>
+			<div id="game">
+				<Pie percentage={this.state.stats.accuracy} />
+				<Statistics stats={this.state.stats} />
+				<Snippet snippet={this.state.game.snippet} typos={this.state.game.typos} />
+				<Keyboard suggestedKeys={this.state.game.suggestedKeys}/>
+			</div>
 		</div>);
 	}
 });
