@@ -4,8 +4,7 @@ import './App.less';
 
 import React from 'react';
 import Navigation from './Navigation';
-import Pie from './Pie';
-import Speedometer from './Speedometer';
+import Statistics from './Statistics';
 import Snippet from './Snippet';
 import Hands from './Hands';
 import Keyboard from './Keyboard';
@@ -22,10 +21,7 @@ export default React.createClass({
 		return (<div className="container">
 			<Navigation />
 			<div id="game">
-				<div className="statistics">
-					<Speedometer show={this.state.settings.showStatistics}/>
-					<Pie percentage={this.state.stats.accuracy} show={this.state.settings.showStatistics}/>
-				</div>
+				<Statistics accuracy={this.state.stats.accuracy} show={this.state.settings.showStatistics}/>
 				<Snippet snippet={this.state.game.snippet} typos={this.state.game.typos} />
 				<Hands />
 				<Keyboard suggestedKeys={this.state.game.suggestedKeys}/>

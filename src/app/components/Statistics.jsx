@@ -1,6 +1,8 @@
 'use strict';
 
 import React from 'react';
+import Pie from './Pie';
+import Speedometer from './Speedometer';
 
 export default React.createClass({
 	mixins: [],
@@ -8,11 +10,14 @@ export default React.createClass({
 	getInitialState: getInitialState,
 	getDefaultProps: getDefaultProps,
 	render: function () {
-		let {wpm, accuracy} = this.props.stats;
+		let {show, accuracy} = this.props;
+		let display = {
+			display: this.props.show ? "block" : "none"
+		}
 
-		return (<div className="statistics">
-      <span>WPM: {wpm}</span>
-			<span>Accuracy: {accuracy}%</span>
+		return (<div className="statistics" style={display}>
+			<Speedometer show={show}/>
+			<Pie percentage={accuracy} show={show}/>
     </div>)
 	}
 });
@@ -27,9 +32,7 @@ function getInitialState(){
 
 function getDefaultProps(){
 	return {
-		stats: {
-			wpm: 0,
-			accuracy: 0
-		}
+		show: true,
+		accuracy: 100
 	}
 }

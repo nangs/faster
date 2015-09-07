@@ -12,11 +12,8 @@ export default React.createClass({
     let portionToFill = {
       strokeDasharray: this.props.percentage + " 100"
     }
-		let display = {
-			display: this.props.show ? "inline-block" : "none"
-		}
 
-		return (<div className="accuracy" style={display}>
+		return (<div className="accuracy">
       <svg viewBox="0 0 32 32">
         <circle r="16" cx="16" cy="16" style={portionToFill} />
       </svg>
@@ -35,7 +32,6 @@ function getInitialState(){
 
 function getDefaultProps(){
 	return {
-    percentage: 100,
-		show: true
+    percentage: 100
 	}
 }
