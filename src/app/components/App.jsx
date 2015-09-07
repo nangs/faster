@@ -7,6 +7,7 @@ import Navigation from './Navigation';
 import Statistics from './Statistics';
 import Pie from './Pie';
 import Snippet from './Snippet';
+import Hands from './Hands';
 import Keyboard from './Keyboard';
 import KeyboardActions from './../actions/KeyboardActions';
 import GameStore from './../stores/GameStore';
@@ -24,6 +25,7 @@ export default React.createClass({
 				<Pie percentage={this.state.stats.accuracy} />
 				<Statistics stats={this.state.stats} />
 				<Snippet snippet={this.state.game.snippet} typos={this.state.game.typos} />
+				<Hands />
 				<Keyboard suggestedKeys={this.state.game.suggestedKeys}/>
 			</div>
 		</div>);
