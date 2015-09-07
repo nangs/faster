@@ -1,7 +1,7 @@
 'use strict';
 
 export default {
-    left: {
+  left: {
     pinky  : ['1','!','q','a','z'],
     ring   : ['2','@','w','s','x'],
     middle : ['3','#','e','d','c'],

@@ -23,7 +23,7 @@ export default React.createClass({
 			<div id="game">
 				<Statistics accuracy={this.state.stats.accuracy} show={this.state.settings.showStatistics}/>
 				<Snippet snippet={this.state.game.snippet} typos={this.state.game.typos} />
-				<Hands show={this.state.settings.showHands}/>
+				<Hands finger={this.state.game.finger} show={this.state.settings.showHands}/>
 				<Keyboard suggestedKeys={this.state.game.suggestedKeys} show={this.state.settings.showKeyboard}/>
 			</div>
 		</div>);
@@ -43,13 +43,14 @@ function handleGameStateUpdates(){
 }
 
 function getGame(){
-	var [wpm, accuracy, hasStarted, snippet, typos, suggestedKeys, settings] = GameStore.getGame();
+	var [wpm, accuracy, hasStarted, snippet, typos, suggestedKeys, finger, settings] = GameStore.getGame();
 	return {
 		game: {
 			hasStarted: hasStarted,
 			snippet: snippet,
 			typos: typos,
-			suggestedKeys: suggestedKeys
+			suggestedKeys: suggestedKeys,
+			finger: finger
 		},
 		settings: settings,
 		stats: {

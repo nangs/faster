@@ -29,10 +29,10 @@ var showSettings = new DispatchedActionHandler(PayloadSources.View, SettingsActi
 });
 
 let beginTime, wpm, accuracy;
-let hasStarted, index, snippet, typos, suggestedKeys;
+let hasStarted, index, snippet, typos, suggestedKeys, finger;
 let settings = {
 	showStatistics: true,
-	showKeyboard: true,
+	showKeyboard: false,
 	showHands: true
 }
 setup();
@@ -42,7 +42,7 @@ class GameStore extends Store {
 		super(dispatcher, [keypress, showSettings]);
 	}
 	getGame() {
-		return [wpm, accuracy, hasStarted, snippet, typos, suggestedKeys, settings];
+		return [wpm, accuracy, hasStarted, snippet, typos, suggestedKeys, finger, settings];
 	}
 }
 export default new GameStore(AppDispatcher);
@@ -60,6 +60,7 @@ function getNextState(event){
 		beginTime = (new Date).getTime();
 		snippet = getNextSnippet();
 		suggestedKeys = getSuggestedKeys(snippet.charAt(index));
+		finger = getSuggestedFinger(snippet.charAt(index));
 	}
 	else if(shiftKey && keyCode === KeyCode.Shift){
 
@@ -79,7 +80,7 @@ function getNextState(event){
 		wpm = getWPM();
 		accuracy = getAccuracy();
 		suggestedKeys = getSuggestedKeys(snippet.charAt(index));
-
+		finger = getSuggestedFinger(snippet.charAt(index));
 		if(index === snippet.length) setup();
 	}
 }
@@ -96,6 +97,15 @@ function getSuggestedKeys (character){
 		for(var key in Hands[hand]){
 			if(_.contains(Hands[hand][key], character))
 				return Hands[hand][key];
+		}
+	}
+}
+
+function getSuggestedFinger(character){
+	for(var hand in Hands){
+		for(var key in Hands[hand]){
+			if(_.contains(Hands[hand][key], character))
+				return { hand: hand, "finger": key}
 		}
 	}
 }
