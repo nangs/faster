@@ -43,7 +43,7 @@ function handleGameStateUpdates(){
 }
 
 function getGame(){
-	var [wpm, accuracy, backspaceFrequency, hasStarted, snippet, typos, suggestedKeys] = GameStore.getGame();
+	var [wpm, accuracy, hasStarted, snippet, typos, suggestedKeys] = GameStore.getGame();
 	return {
 		game: {
 			hasStarted: hasStarted,
@@ -56,8 +56,7 @@ function getGame(){
 		},
 		stats: {
 			wpm: wpm,
-			accuracy: accuracy,
-			backspaceFrequency: backspaceFrequency
+			accuracy: accuracy
 		}
 	}
 }

@@ -22,9 +22,8 @@ var keypress = new DispatchedActionHandler(PayloadSources.View, KeyboardActionTy
 	getNextState(keypressEvent);
 });
 
-let beginTime, wpm, accuracy, backspaceFrequency;
+let beginTime, wpm, accuracy;
 let hasStarted, index, snippet, typos, suggestedKeys;
-
 setup();
 
 class GameStore extends Store {
@@ -32,7 +31,7 @@ class GameStore extends Store {
 		super(dispatcher, [keypress]);
 	}
 	getGame() {
-		return [wpm, accuracy, backspaceFrequency, hasStarted, snippet, typos, suggestedKeys];
+		return [wpm, accuracy, hasStarted, snippet, typos, suggestedKeys];
 	}
 }
 export default new GameStore(AppDispatcher);
@@ -58,7 +57,6 @@ function getNextState(event){
 		if(keyCode === KeyCode.BackSpace){
 			if(index <= 0) return;
 			typos[--index] = UNVISITED;
-			backspaceFrequency++;
 		}
 		else if(key === snippet[index])
 		{
@@ -76,12 +74,10 @@ function getNextState(event){
 }
 
 function setup(){
-	wpm = accuracy = backspaceFrequency = hasStarted = beginTime = index = 0;
-	//snippet = getNextSnippet();
+	wpm = accuracy = hasStarted = beginTime = index = 0;
 	snippet = "Press enter to start!";
 	suggestedKeys = ["enter"];
 	typos = Array.apply(null, {length: snippet.length}).map(() => {return UNVISITED;});
-	//suggestedKeys = getSuggestedKeys(snippet.charAt(index))
 }
 
 function getSuggestedKeys (character){
