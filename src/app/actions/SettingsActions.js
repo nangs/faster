@@ -10,8 +10,8 @@ class SettingsActions {
     this.actions = actions;
   }
 
-  showStatistics(){
-    this.dispatcher.handleViewAction(new Action(this.actions.ShowStatistics, event));
+  showSettings(setting){
+    this.dispatcher.handleViewAction(new Action(this.actions.ShowSettings, setting));
   }
 }
 

@@ -11,8 +11,11 @@ export default React.createClass({
 	getDefaultProps: getDefaultProps,
 	render: function () {
 		let S = this.props.suggestedKeys;
+		let display = {
+			display: this.props.show? "block" : "none"
+		}
 
-		return <div className="flex-keyboard">
+		return (<div className="flex-keyboard" style={display}>
       <div className="container">
         <div className="keyboard">
           <section className="key-row">
@@ -86,7 +89,7 @@ export default React.createClass({
           </section>
         </div>
       </div>
-    </div>
+    </div>)
 	}
 });
 
@@ -100,6 +103,7 @@ function getInitialState(){
 
 function getDefaultProps(){
 	return {
-		suggestedKeys: []
+		suggestedKeys: [],
+		show: true
 	}
 }

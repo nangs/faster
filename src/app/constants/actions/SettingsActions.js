@@ -2,7 +2,7 @@
 
 class ActionTypes {
 	constructor() {
-		this.ShowStatistics = 'Settings.ShowStatistics';
+		this.ShowSettings = 'Settings.ShowSettings';
 	}
 }
 export default Object.freeze(new ActionTypes());

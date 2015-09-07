@@ -8,8 +8,12 @@ export default React.createClass({
 	getInitialState: getInitialState,
 	getDefaultProps: getDefaultProps,
 	render: function () {
-		return (<div className="hands">
-      <svg id="hands" width="845.03998" height="551.28003">
+		let display = {
+			display: this.props.show? "block" : "none"
+		}
+
+		return (<div className="hands" style={display}>
+      <svg id="hands" width="450" height="300">
         <g id="layer1" transform="scale(0.5) translate(0,-501.082)">
 
           <g id="left-hand" transform="matrix(0.48976294,0,0,0.48976294,-44.813309,396.8143)">

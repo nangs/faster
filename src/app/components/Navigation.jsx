@@ -9,6 +9,7 @@ require('./../styles/assets/cancel.svg');
 
 import React from 'react';
 import SettingsActions from './../actions/SettingsActions';
+import {SHOWKEYBOARD, SHOWSTATISTICS, SHOWHANDS} from './../constants/Settings';
 
 export default React.createClass({
 	mixins: [],
@@ -24,8 +25,8 @@ export default React.createClass({
 				<img src="./stopwatch.svg" />
 				<img src="./speedometer.svg" onClick={showStatistics.bind(this)}/>
 				<img src="./audio.svg" />
-				<img src="./keyboard.svg" />
-				<img src="./show-hands.svg" />
+				<img src="./keyboard.svg" onClick={showKeyboard.bind(this)}/>
+				<img src="./show-hands.svg" onClick={showHands.bind(this)}/>
       </nav>
     );
 	}
@@ -36,5 +37,13 @@ function componentDidMount(){
 }
 
 function showStatistics(){
-	SettingsActions.showStatistics();
+	SettingsActions.showSettings(SHOWSTATISTICS);
+}
+
+function showKeyboard(){
+	SettingsActions.showSettings(SHOWKEYBOARD);
+}
+
+function showHands(){
+	SettingsActions.showSettings(SHOWHANDS);
 }

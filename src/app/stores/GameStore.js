@@ -23,20 +23,23 @@ var keypress = new DispatchedActionHandler(PayloadSources.View, KeyboardActionTy
 	getNextState(keypressEvent);
 });
 
-var showStatistics = new DispatchedActionHandler(PayloadSources.View, SettingsActionTypes.ShowStatistics, (store, action) => {
-	settings.showStatistics = !settings.showStatistics;
+var showSettings = new DispatchedActionHandler(PayloadSources.View, SettingsActionTypes.ShowSettings, (store, action) => {
+	let setting = action.payload;
+	settings[setting] = !settings[setting];
 });
 
 let beginTime, wpm, accuracy;
 let hasStarted, index, snippet, typos, suggestedKeys;
 let settings = {
-	showStatistics: true
+	showStatistics: true,
+	showKeyboard: true,
+	showHands: true
 }
 setup();
 
 class GameStore extends Store {
 	constructor(dispatcher) {
-		super(dispatcher, [keypress, showStatistics]);
+		super(dispatcher, [keypress, showSettings]);
 	}
 	getGame() {
 		return [wpm, accuracy, hasStarted, snippet, typos, suggestedKeys, settings];
