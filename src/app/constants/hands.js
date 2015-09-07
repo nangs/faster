@@ -1,3 +1,5 @@
+'use strict';
+
 export default {
     left: {
     pinky  : ['1','!','q','a','z'],

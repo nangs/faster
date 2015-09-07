@@ -1,3 +1,5 @@
+'use strict';
+
 export default {
   BackSpace: 8,
   Tab: 9,
