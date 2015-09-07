@@ -2,7 +2,7 @@
 
 import React from 'react';
 import _ from "underscore";
-import {LETTER, SYMBOL, CONTROL} from './../constants/KeyType';
+import {LETTER, SYMBOL, CONTROL, SPACEBAR} from './../constants/KeyType';
 
 export default React.createClass({
 	mixins: [],
@@ -19,7 +19,8 @@ export default React.createClass({
 			side
 		} = this.props;
 
-		let suggest = (shouldSuggest(defaultKey, suggestedKeys) || shouldSuggest(shiftKey, suggestedKeys)) ? "suggest" : "";
+		let isSpacebar = (type === SPACEBAR && suggestedKeys[0] === " ");
+		let suggest = (isSpacebar || _.contains(suggestedKeys, defaultKey) || _.contains(suggestedKeys, shiftKey)) ? "suggest" : "";
 		let parent = ["key", size, type, side, suggest].join(" ");
 
 		var off = defaultKey;
@@ -52,8 +53,4 @@ function getDefaultProps(){
 		type: "symbol",
 		side: ""
 	}
-}
-
-function shouldSuggest(character, suggestedKeys){
-	return (_.contains(suggestedKeys, character));
 }

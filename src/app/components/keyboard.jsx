@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Key from './Key';
-import {LETTER, SYMBOL, CONTROL} from './../constants/KeyType';
+import {LETTER, SYMBOL, CONTROL, SPACEBAR} from './../constants/KeyType';
 
 export default React.createClass({
 	mixins: [],
@@ -79,7 +79,7 @@ export default React.createClass({
           <section className="key-row">
 						<Key defaultKey="ctrl" size="two" side="l" type={CONTROL}/>
 						<Key defaultKey="alt" size="two" side="l" type={CONTROL}/>
-						<Key defaultKey="" size="five" type={CONTROL}/>
+						<Key suggestedKeys={S} defaultKey=" " size="five" type={SPACEBAR}/>
 						<Key defaultKey="alt" size="one-one-half" type={CONTROL}/>
 						<Key defaultKey="ctrl" size="one" type={CONTROL}/>
 						<Key defaultKey="" size="two-two-half arrowkey-container" type={CONTROL}/>
