@@ -15,7 +15,7 @@ module.exports = {
 		new webpack.optimize.DedupePlugin(),
 		new BowerWebpackPlugin(),
 		new HtmlWebpackPlugin({
-			title: 'hush-web',
+			title: 'faster',
 			template: path.join(__dirname, './web/index.html')
 		}),
 		new ExtractTextPlugin('styles.css')
