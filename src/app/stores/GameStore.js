@@ -29,10 +29,10 @@ var showSettings = new DispatchedActionHandler(PayloadSources.View, SettingsActi
 });
 
 let beginTime, wpm, accuracy;
-let hasStarted, index, snippet, typos, suggestedKeys, finger;
+let hasStarted, index, snippet, isShift, typos, suggestedKeys, finger;
 let settings = {
 	showStatistics: true,
-	showKeyboard: false,
+	showKeyboard: true,
 	showHands: true
 }
 setup();
@@ -42,7 +42,7 @@ class GameStore extends Store {
 		super(dispatcher, [keypress, showSettings]);
 	}
 	getGame() {
-		return [wpm, accuracy, hasStarted, snippet, typos, suggestedKeys, finger, settings];
+		return [wpm, accuracy, hasStarted, snippet, isShift, typos, suggestedKeys, finger, settings];
 	}
 }
 export default new GameStore(AppDispatcher);
@@ -63,9 +63,10 @@ function getNextState(event){
 		finger = getSuggestedFinger(snippet.charAt(index));
 	}
 	else if(shiftKey && keyCode === KeyCode.Shift){
-
+		isShift = !isShift;
 	}
 	else{
+		isShift = false;
 		if(keyCode === KeyCode.BackSpace){
 			if(index <= 0) return;
 			typos[--index] = UNVISITED;
@@ -86,7 +87,7 @@ function getNextState(event){
 }
 
 function setup(){
-	wpm = accuracy = hasStarted = beginTime = index = 0;
+	wpm = accuracy = hasStarted = beginTime = index = isShift = 0;
 	snippet = "Press enter to start!";
 	suggestedKeys = ["enter"];
 	typos = Array.apply(null, {length: snippet.length}).map(() => {return UNVISITED;});

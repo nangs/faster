@@ -10,12 +10,15 @@ export default React.createClass({
 	getInitialState: getInitialState,
 	getDefaultProps: getDefaultProps,
 	render: function () {
+
 		let S = this.props.suggestedKeys;
+		let keyboardType = this.props.isShift ? "flex-shift-keyboard": "flex-keyboard";
+
 		let display = {
 			display: this.props.show? "block" : "none"
 		}
 
-		return (<div className="flex-keyboard" style={display}>
+		return (<div className={keyboardType} style={display}>
       <div className="container">
         <div className="keyboard">
           <section className="key-row">

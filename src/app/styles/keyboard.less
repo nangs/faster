@@ -2,6 +2,18 @@
   background: radial-gradient(at bottom, #4f95f4, #1d4ea4, #1d4ea4);
 }
 
+.flex-shift-keyboard {
+  .key{
+    text-transform: uppercase;
+  }
+  .on {
+    display: block;
+  }
+  .off {
+    display: none;
+  }
+}
+
 .key-row {
   display:-webkit-flex;
   margin:0 auto 7px;
@@ -45,11 +57,6 @@ sup, sub { outline:1px solid magenta; display:block; align-self:center; }
 
 .l { text-align:left; padding-left:12px; }
 .r { text-align:right; padding-right:12px; }
-
-
-.uppercase {
-  text-transform: uppercase;
-}
 
 .on {
   display: none;
