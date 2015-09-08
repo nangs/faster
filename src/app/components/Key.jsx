@@ -20,7 +20,9 @@ export default React.createClass({
 		} = this.props;
 
 		let isSpacebar = (type === SPACEBAR && suggestedKeys[0] === " ");
-		let suggest = (isSpacebar || _.contains(suggestedKeys, defaultKey) || _.contains(suggestedKeys, shiftKey)) ? "suggest" : "";
+		let isSuggested = _.some([defaultKey, shiftKey], (value) => { return _.contains(suggestedKeys, value)	})
+		let suggest = (isSpacebar || isSuggested) ? "suggest" : "";
+
 		let parent = ["key", size, type, side, suggest].join(" ");
 
 		var off = defaultKey;

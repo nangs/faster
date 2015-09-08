@@ -96,7 +96,7 @@ function setup(){
 function getSuggestedKeys (character){
 	for(var hand in Hands){
 		for(var key in Hands[hand]){
-			if(_.contains(Hands[hand][key], character))
+			if(_.contains(Hands[hand][key], character.toLowerCase()))
 				return Hands[hand][key];
 		}
 	}
@@ -105,7 +105,7 @@ function getSuggestedKeys (character){
 function getSuggestedFinger(character){
 	for(var hand in Hands){
 		for(var key in Hands[hand]){
-			if(_.contains(Hands[hand][key], character))
+			if(_.contains(Hands[hand][key], character.toLowerCase()))
 				return { hand: hand, "finger": key}
 		}
 	}
