@@ -13,14 +13,15 @@ export default React.createClass({
     }
 
 		return (<div className="words-per-minute">
-			<svg viewBox="0 0 32 32">
+			<svg viewBox="0 0 32 16">
 				<defs>
 					<clipPath id="cut-off-bottom">
-						<rect x="0" y="0"></rect>
+						<rect x="0" y="-1px"></rect>
 					</clipPath>
 				</defs>
 				<circle cx="16" cy="16" r="16" clipPath="url(#cut-off-bottom)"></circle>
 			</svg>
+			<span> 0 WPM</span>
     </div>)
 	}
 });
