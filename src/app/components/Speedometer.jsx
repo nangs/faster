@@ -8,8 +8,9 @@ export default React.createClass({
 	getInitialState: getInitialState,
 	getDefaultProps: getDefaultProps,
 	render: function () {
+
     let portionToFill = {
-      strokeDasharray: "95 189"
+      strokeDasharray: this.props.wpm + " 100"
     }
 
 		return (<div className="words-per-minute">
@@ -19,9 +20,9 @@ export default React.createClass({
 						<rect x="0" y="-1px"></rect>
 					</clipPath>
 				</defs>
-				<circle cx="16" cy="16" r="16" clipPath="url(#cut-off-bottom)"></circle>
+				<circle cx="16" cy="16" r="16" clipPath="url(#cut-off-bottom)" style={portionToFill}></circle>
 			</svg>
-			<span> 0 WPM</span>
+			<span>{this.props.wpm}</span>
     </div>)
 	}
 });
@@ -36,6 +37,6 @@ function getInitialState(){
 
 function getDefaultProps(){
 	return {
-    percentage: 100
+    wpm: 100
 	}
 }

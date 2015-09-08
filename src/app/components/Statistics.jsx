@@ -10,13 +10,13 @@ export default React.createClass({
 	getInitialState: getInitialState,
 	getDefaultProps: getDefaultProps,
 	render: function () {
-		let {show, accuracy} = this.props;
+		let {show, accuracy, wpm} = this.props;
 		let display = {
 			display: this.props.show ? "block" : "none"
 		}
 
 		return (<div className="statistics" style={display}>
-			<Speedometer show={show}/>
+			<Speedometer wpm={wpm} show={show}/>
 			<Pie percentage={accuracy} show={show}/>
     </div>)
 	}

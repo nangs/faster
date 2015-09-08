@@ -21,7 +21,7 @@ export default React.createClass({
 		return (<div className="container">
 			<Navigation />
 			<div id="game">
-				<Statistics accuracy={this.state.stats.accuracy} show={this.state.settings.showStatistics}/>
+				<Statistics wpm={this.state.stats.wpm} accuracy={this.state.stats.accuracy} show={this.state.settings.showStatistics}/>
 				<Snippet snippet={this.state.game.snippet} typos={this.state.game.typos} />
 				<Keyboard suggestedKeys={this.state.game.suggestedKeys} show={this.state.settings.showKeyboard}/>
 				<Hands finger={this.state.game.finger} show={this.state.settings.showHands}/>
