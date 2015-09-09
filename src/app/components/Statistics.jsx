@@ -15,7 +15,7 @@ export default React.createClass({
 			display: this.props.show ? "block" : "none"
 		}
 
-		return (<div className="statistics" style={display}>
+		return (<div className="statistics center" style={display}>
 			<Gauge value={wpm} size={20} radius={100} label="WPM"
 								sections={["#8cc152", "#ffb74d", "#ffb74d", "#e84528", "#e84528", "#e84528"]}
 								arrow={{height: 60, width: 6, color: "#ccc"}}

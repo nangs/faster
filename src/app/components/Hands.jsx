@@ -26,7 +26,7 @@ export default React.createClass({
 			display: this.props.show? "block" : "none"
 		}
 
-		return (<div className="hands" style={display}>
+		return (<div className="hands center" style={display}>
       <svg id="hands" width="450" height="300">
         <g id="layer1" transform="scale(0.5) translate(0,-501.082)">
 

@@ -12,14 +12,14 @@ export default React.createClass({
 	render: function () {
 
 		let S = this.props.suggestedKeys;
-		let keyboardType = this.props.isShift ? "flex-shift-keyboard": "flex-keyboard";
+		let keyboardType = (this.props.isShift ? "flex-shift-keyboard": "flex-keyboard");
 
 		let display = {
 			display: this.props.show? "block" : "none"
 		}
 
 		return (<div className={keyboardType} style={display}>
-      <div className="container">
+      <div className="center">
         <div className="keyboard">
           <section className="key-row">
 						<Key suggestedKeys={S} defaultKey="`" shiftKey="~" size="one" type={SYMBOL} />
