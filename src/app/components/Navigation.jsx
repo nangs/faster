@@ -1,6 +1,5 @@
 'use strict';
 
-require('./../styles/assets/stopwatch.svg');
 require('./../styles/assets/speedometer.svg');
 require('./../styles/assets/keyboard.svg');
 require('./../styles/assets/show-hands.svg');
@@ -22,7 +21,6 @@ export default React.createClass({
 	render: function (){
 		return (
       <nav className="navigation">
-				<img src="./stopwatch.svg" />
 				<img src="./speedometer.svg" onClick={showStatistics.bind(this)}/>
 				<img src="./audio.svg" />
 				<img src="./keyboard.svg" onClick={showKeyboard.bind(this)}/>
