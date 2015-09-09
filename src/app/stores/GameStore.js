@@ -11,7 +11,7 @@ import _ from 'underscore';
 import {keyboard, shiftKeyboard} from './../constants/Keyboard';
 import KeyCode from './../constants/KeyCode';
 import Languages from './../constants/Languages';
-import Hands from './../constants/Hands';
+import Fingers from './../constants/Fingers';
 import {CORRECT, INCORRECT, UNVISITED} from './../constants/SnippetStates';
 
 var keypress = new DispatchedActionHandler(PayloadSources.View, KeyboardActionTypes.Keypress, (store, action) => {
@@ -29,7 +29,7 @@ var showSettings = new DispatchedActionHandler(PayloadSources.View, SettingsActi
 });
 
 let beginTime, wpm, accuracy;
-let hasStarted, index, snippet, isShift, typos, suggestedKeys, finger;
+let hasStarted, index, snippet, isShift, typos, suggestedKeys, suggestedFinger;
 let settings = {
 	showStatistics: true,
 	showKeyboard: true,
@@ -42,7 +42,7 @@ class GameStore extends Store {
 		super(dispatcher, [keypress, showSettings]);
 	}
 	getGame() {
-		return [wpm, accuracy, hasStarted, snippet, isShift, typos, suggestedKeys, finger, settings];
+		return [wpm, accuracy, hasStarted, snippet, isShift, typos, suggestedKeys, suggestedFinger, settings];
 	}
 }
 export default new GameStore(AppDispatcher);
@@ -59,8 +59,9 @@ function getNextState(event){
 		hasStarted = true;
 		beginTime = (new Date).getTime();
 		snippet = getNextSnippet();
-		suggestedKeys = getSuggestedKeys(snippet.charAt(index));
-		finger = getSuggestedFinger(snippet.charAt(index));
+		let suggestions = getSuggestions(snippet.charAt(index));
+		suggestedKeys = suggestions.suggestedKeys;
+		suggestedFinger = suggestions.suggestedFinger;
 	}
 	else if(shiftKey && keyCode === KeyCode.Shift){
 		isShift = !isShift;
@@ -80,9 +81,10 @@ function getNextState(event){
 		}
 		wpm = getWPM();
 		accuracy = getAccuracy();
-		suggestedKeys = getSuggestedKeys(snippet.charAt(index));
-		finger = getSuggestedFinger(snippet.charAt(index));
-		if(index === snippet.length) setup();
+		if(index === snippet.length){ setup(); return; }
+		let suggestions = getSuggestions(snippet.charAt(index));
+		suggestedKeys = suggestions.suggestedKeys;
+		suggestedFinger = suggestions.suggestedFinger;
 	}
 }
 
@@ -90,24 +92,16 @@ function setup(){
 	wpm = accuracy = hasStarted = beginTime = index = isShift = 0;
 	snippet = "Press enter to start!";
 	suggestedKeys = ["enter"];
+	suggestedFinger = "rpinky";
 	typos = Array.apply(null, {length: snippet.length}).map(() => {return UNVISITED;});
 }
 
-function getSuggestedKeys (character){
-	for(var hand in Hands){
-		for(var key in Hands[hand]){
-			if(_.contains(Hands[hand][key], character.toLowerCase()))
-				return Hands[hand][key];
-		}
-	}
-}
-
-function getSuggestedFinger(character){
-	for(var hand in Hands){
-		for(var key in Hands[hand]){
-			if(_.contains(Hands[hand][key], character.toLowerCase()))
-				return { hand: hand, "finger": key}
-		}
+function getSuggestions (character){
+	for(var finger in Fingers){
+			if(_.contains(Fingers[finger], character.toLowerCase())){
+				if(!Fingers[finger])debugger;
+				return { suggestedKeys: Fingers[finger], suggestedFinger: finger }
+			}
 	}
 }
 

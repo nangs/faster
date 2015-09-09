@@ -24,7 +24,7 @@ export default React.createClass({
 				<Statistics wpm={this.state.stats.wpm} accuracy={this.state.stats.accuracy} show={this.state.settings.showStatistics}/>
 				<Snippet snippet={this.state.game.snippet} typos={this.state.game.typos} />
 				<Keyboard isShift={this.state.game.isShift} suggestedKeys={this.state.game.suggestedKeys} show={this.state.settings.showKeyboard}/>
-				<Hands finger={this.state.game.finger} show={this.state.settings.showHands}/>
+				<Hands suggestedFinger={this.state.game.suggestedFinger} show={this.state.settings.showHands}/>
 			</div>
 		</div>);
 	}
@@ -43,7 +43,7 @@ function handleGameStateUpdates(){
 }
 
 function getGame(){
-	var [wpm, accuracy, hasStarted, snippet, isShift, typos, suggestedKeys, finger, settings] = GameStore.getGame();
+	var [wpm, accuracy, hasStarted, snippet, isShift, typos, suggestedKeys, suggestedFinger, settings] = GameStore.getGame();
 	return {
 		game: {
 			hasStarted: hasStarted,
@@ -51,7 +51,7 @@ function getGame(){
 			isShift: isShift,
 			typos: typos,
 			suggestedKeys: suggestedKeys,
-			finger: finger
+			suggestedFinger: suggestedFinger
 		},
 		settings: settings,
 		stats: {

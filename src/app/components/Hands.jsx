@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import Hands from './../constants/Hands'
+import Fingers from './../constants/Fingers'
 
 export default React.createClass({
 	mixins: [],
@@ -9,18 +9,18 @@ export default React.createClass({
 	getInitialState: getInitialState,
 	getDefaultProps: getDefaultProps,
 	render: function () {
-		let isRight, isLeft, isPinky, isRing, isMiddle, isIndex, isThumb;
 
+		let hand = this.props.suggestedFinger.charAt(0);
+		let finger = this.props.suggestedFinger.charAt(1);
 
-		var {hand, finger} = this.props.finger;
-		isLeft = (hand === "left")? "Left" : "";
-		isRight = (hand === "right")? "Right" : "";
+		let isLeft = (hand === 'l')? "Left" : "";
+		let isRight = (hand === 'r')? "Right" : "";
 
-		isPinky = (finger === "pinky") ? "pinky" : "";
-		isRing = (finger === "ring") ? "ring" : "";
-		isMiddle = (finger === "middle") ? "middle" : "";
-		isIndex = (finger === "index") ? "index" : "";
-		isThumb = (finger === "thumb") ? "thumb" : "";
+		let isPinky = (finger === 'p') ? "pinky" : "";
+		let isRing = (finger === 'r') ? "ring" : "";
+		let isMiddle = (finger === 'm') ? "middle" : "";
+		let isIndex = (finger === 'i') ? "index" : "";
+		let isThumb = (finger === 't') ? "thumb" : "";
 
 		let display = {
 			display: this.props.show? "block" : "none"
@@ -77,9 +77,6 @@ function getInitialState(){
 
 function getDefaultProps(){
 	return {
-		finger: {
-			hand: "right",
-			finger: "pinky"
-		}
+		finger: "rpinky"
 	};
 }
