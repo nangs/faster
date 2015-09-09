@@ -106,7 +106,7 @@ function getInitialState(){
 
 function getDefaultProps(){
 	return {
-		suggestedKeys: [],
+		suggestedKeys: ["enter"],
 		show: true
 	}
 }
