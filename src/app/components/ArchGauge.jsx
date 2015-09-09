@@ -57,7 +57,7 @@ export default React.createClass({
 
     let svg = d3.select(el).append("svg")
         .attr("width", 200)
-        .attr("height", 150)
+        .attr("height", 160)
         .append("g")
         .attr("transform", "translate(" + 100 + "," + 100 + ")");
 
