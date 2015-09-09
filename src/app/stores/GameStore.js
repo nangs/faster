@@ -10,7 +10,7 @@ import AppDispatcher from './../dispatcher/AppDispatcher';
 import _ from 'underscore';
 import {keyboard, shiftKeyboard} from './../constants/Keyboard';
 import KeyCode from './../constants/KeyCode';
-import Languages from './../constants/Languages';
+import {LANGUAGES, SNIPPETS} from './../constants/Languages';
 import Fingers from './../constants/Fingers';
 import {CORRECT, INCORRECT, UNVISITED} from './../constants/SnippetStates';
 
@@ -33,7 +33,8 @@ let hasStarted, index, snippet, isShift, typos, suggestedKeys, suggestedFinger;
 let settings = {
 	showStatistics: true,
 	showKeyboard: true,
-	showHands: true
+	showHands: true,
+	language: LANGUAGES[0]
 };
 setup();
 
@@ -59,7 +60,8 @@ function getNextState(event){
 		hasStarted = true;
 		beginTime = (new Date).getTime();
 		wpm = accuracy = 0;
-		snippet = getNextSnippet();
+		let snippets = SNIPPETS[settings.language];
+		snippet = snippets[ Math.round(Math.random()) % snippets.length];
 		let suggestions = getSuggestions(snippet.charAt(index));
 		suggestedKeys = suggestions.suggestedKeys;
 		suggestedFinger = suggestions.suggestedFinger;
@@ -119,25 +121,4 @@ function getAccuracy() {
 		if(i === 0 && c === 0) return 0;
     let percentage = 100 * (c / (c + i));
 		return Math.round(percentage);
-}
-
-function getNextSnippet(){
-  var property = pickRandomProperty(Languages);
-  var language = Languages[property];
-  var snippet = pickRandomSnippet(language);
-  return snippet;
-}
-
-function pickRandomSnippet(language){
-  var index = (Math.round(Math.random())) % language.length;
-  return language[index];
-}
-
-function pickRandomProperty(obj) {
-    var result;
-    var count = 0;
-    for (var prop in obj)
-        if (Math.random() < 1/++count)
-           result = prop;
-    return result;
 }

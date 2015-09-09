@@ -13,8 +13,12 @@ var javascriptSnippets = [
     'document.querySelector(\'.start\').addEventListener(\'click\', start);'
 ];
 
+export const LANGUAGES = [
+  "Java",
+  "JavaScript"
+];
 
-export default {
+export const SNIPPETS = {
     Java : javaSnippets,
     JavaScript : javascriptSnippets
 };
