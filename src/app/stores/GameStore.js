@@ -81,10 +81,12 @@ function getNextState(event){
 		}
 		wpm = getWPM();
 		accuracy = getAccuracy();
-		if(index === snippet.length){ setup(); return; }
 		let suggestions = getSuggestions(snippet.charAt(index));
-		suggestedKeys = suggestions.suggestedKeys;
-		suggestedFinger = suggestions.suggestedFinger;
+		if(suggestions){
+			suggestedKeys = suggestions.suggestedKeys;
+			suggestedFinger = suggestions.suggestedFinger;
+		}
+		if(index === snippet.length) setup();
 	}
 }
 
