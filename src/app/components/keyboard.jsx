@@ -6,8 +6,6 @@ import {LETTER, SYMBOL, CONTROL, SPACEBAR} from './../constants/KeyType';
 
 export default React.createClass({
 	mixins: [],
-	componentDidMount: componentDidMount,
-	getInitialState: getInitialState,
 	getDefaultProps: getDefaultProps,
 	render: function () {
 
@@ -95,14 +93,6 @@ export default React.createClass({
     </div>)
 	}
 });
-
-function componentDidMount() {
-
-}
-
-function getInitialState(){
-	return {};
-}
 
 function getDefaultProps(){
 	return {

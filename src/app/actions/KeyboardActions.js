@@ -11,8 +11,8 @@ class KeyboardActions {
   }
 
   handleKeypress(keycode){
-    this.dispatcher.handleViewAction(new Action(this.actions.Keypress, event));
+    this.dispatcher.handleViewAction(new Action(this.actions.Keypress, keycode));
   }
 }
 
-export default new KeyboardActions(AppDispatcher, ActionTypes)
+export default new KeyboardActions(AppDispatcher, ActionTypes);

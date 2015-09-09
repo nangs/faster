@@ -15,4 +15,4 @@ class SettingsActions {
   }
 }
 
-export default new SettingsActions(AppDispatcher, ActionTypes)
+export default new SettingsActions(AppDispatcher, ActionTypes);

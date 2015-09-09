@@ -4,8 +4,6 @@ import React from 'react';
 
 export default React.createClass({
 	mixins: [],
-	componentDidMount: componentDidMount,
-	getInitialState: getInitialState,
 	getDefaultProps: getDefaultProps,
 	render: function () {
     let accuracy = this.props.percentage + "%";
@@ -22,14 +20,6 @@ export default React.createClass({
     </div>)
 	}
 });
-
-function componentDidMount() {
-
-}
-
-function getInitialState(){
-	return {}
-}
 
 function getDefaultProps(){
 	return {

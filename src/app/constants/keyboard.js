@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 export const keyboard = {
     8   : -1, //backspace
@@ -59,12 +59,11 @@ export const keyboard = {
     220 : '\\',
     221 : ']',
     222 : '\''
-}
+};
 
 export const shiftKeyboard = {
     219 : '{',
     221 : '}',
-    55  : '&',
     57  : '(',
     48  : ')',
     49  : '!',
@@ -110,4 +109,4 @@ export const shiftKeyboard = {
     192 : '~',
     220 : '|',
     222 : '"'
-}
+};

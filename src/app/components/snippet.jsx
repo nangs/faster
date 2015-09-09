@@ -4,8 +4,6 @@ import React from 'react';
 
 export default React.createClass({
 	mixins: [],
-	componentDidMount: componentDidMount,
-	getInitialState: getInitialState,
 	getDefaultProps: getDefaultProps,
 	render: function () {
 		var snippetMarkup = this.props.snippet.split('').map(generateCharacter.bind(this));
@@ -14,14 +12,6 @@ export default React.createClass({
     </div>)
 	}
 });
-
-function componentDidMount() {
-
-}
-
-function getInitialState(){
-	return {}
-}
 
 function getDefaultProps(){
 	return {

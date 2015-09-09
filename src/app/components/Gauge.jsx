@@ -6,11 +6,9 @@ import ArcGauge from './ArchGauge';
 
 export default React.createClass({
 	mixins: [],
-	componentDidMount: function(){
-    this.setState({
-      width: ReactDom.findDOMNode(this).offsetWidth
-    });
-  },
+	componentDidMount: componentDidMount,
+	getInitialState: getInitialState,
+	getDefaultProps: getDefaultProps,
   componentWillReceiveProps(nextProps) {
     let history = this.state.history || new Array(100).fill(0);
 
@@ -24,22 +22,6 @@ export default React.createClass({
       history: history,
       width: ReactDom.findDOMNode(this).offsetWidth
     })
-  },
-  getInitialState() {
-    return {
-      width: 212
-    }
-  },
-  getDefaultProps() {
-    return {
-      value: 0,
-      size: 15,
-      radius: 85,
-      sections: ['#ccc', '#999', '#444'],
-      arrow: null,
-      label: null,
-      legend: null
-    }
   },
   render() {
     let cls = 'gauge';
@@ -57,3 +39,27 @@ export default React.createClass({
     );
   }
 });
+
+function componentDidMount(){
+	this.setState({
+		width: ReactDom.findDOMNode(this).offsetWidth
+	});
+}
+
+function getInitialState(){
+	return {
+		width: 212
+	}
+}
+
+function getDefaultProps(){
+	return {
+		value: 0,
+		size: 15,
+		radius: 85,
+		sections: ['#ccc', '#999', '#444'],
+		arrow: null,
+		label: null,
+		legend: null
+	}
+}

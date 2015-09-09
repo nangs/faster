@@ -12,27 +12,15 @@ import {SHOWKEYBOARD, SHOWSTATISTICS, SHOWHANDS} from './../constants/Settings';
 
 export default React.createClass({
 	mixins: [],
-	componentDidMount: componentDidMount,
-	getInitialState: function(){
-		return {
-
-		}
-	},
 	render: function (){
-		return (
-      <nav className="navigation">
+		return (<nav className="navigation">
 				<img src="./speedometer.svg" onClick={showStatistics.bind(this)}/>
 				<img src="./audio.svg" />
 				<img src="./keyboard.svg" onClick={showKeyboard.bind(this)}/>
 				<img src="./show-hands.svg" onClick={showHands.bind(this)}/>
-      </nav>
-    );
+      </nav>)
 	}
 });
-
-function componentDidMount(){
-
-}
 
 function showStatistics(){
 	SettingsActions.showSettings(SHOWSTATISTICS);

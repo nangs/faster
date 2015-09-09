@@ -11,4 +11,4 @@ export default {
   CapLocks: 20,
   Space: 32,
   Delete: 46
-}
+};

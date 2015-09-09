@@ -34,7 +34,7 @@ let settings = {
 	showStatistics: true,
 	showKeyboard: true,
 	showHands: true
-}
+};
 setup();
 
 class GameStore extends Store {
@@ -93,16 +93,16 @@ function getNextState(event){
 
 function setup(){
 	hasStarted = beginTime = index = isShift = 0;
-	snippet = "Press enter to start!";
-	suggestedKeys = ["enter"];
-	suggestedFinger = "rpinky";
+	snippet = 'Press enter to start!';
+	suggestedKeys = ['enter'];
+	suggestedFinger = 'rpinky';
 	typos = Array.apply(null, {length: snippet.length}).map(() => {return UNVISITED;});
 }
 
 function getSuggestions (character){
 	for(var finger in Fingers){
 			if(_.contains(Fingers[finger], character.toLowerCase()))
-				return { suggestedKeys: Fingers[finger], suggestedFinger: finger }
+				return { suggestedKeys: Fingers[finger], suggestedFinger: finger };
 	}
 }
 
@@ -129,7 +129,7 @@ function getNextSnippet(){
 }
 
 function pickRandomSnippet(language){
-  var index = (Math.round(Math.random())) % language.length
+  var index = (Math.round(Math.random())) % language.length;
   return language[index];
 }
 
