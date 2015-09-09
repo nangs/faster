@@ -18,6 +18,7 @@ export default React.createClass({
         <circle r="16" cx="16" cy="16" style={portionToFill} />
       </svg>
       <span>{accuracy}</span>
+			<div className="label">accuracy</div>
     </div>)
 	}
 });
