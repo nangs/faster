@@ -110,7 +110,7 @@ function getSuggestions (character){
 function getWPM() {
     let totalTime = (new Date).getTime() - beginTime;
 		if(totalTime === 0) return 0;
-    return Math.round(snippet.length/totalTime * 7500);
+    return Math.round(10000 * index / (5 * totalTime));
 }
 
 function getAccuracy() {
