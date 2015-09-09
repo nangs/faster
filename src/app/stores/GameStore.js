@@ -100,10 +100,8 @@ function setup(){
 
 function getSuggestions (character){
 	for(var finger in Fingers){
-			if(_.contains(Fingers[finger], character.toLowerCase())){
-				if(!Fingers[finger])debugger;
+			if(_.contains(Fingers[finger], character.toLowerCase()))
 				return { suggestedKeys: Fingers[finger], suggestedFinger: finger }
-			}
 	}
 }
 
