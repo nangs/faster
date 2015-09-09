@@ -10,7 +10,7 @@ export default React.createClass({
 	render: function () {
 		var snippetMarkup = this.props.snippet.split('').map(generateCharacter.bind(this));
 		return (<div className="snippet">
-      <p> {snippetMarkup} </p>
+      <pre className="code"> {snippetMarkup} </pre>
     </div>)
 	}
 });

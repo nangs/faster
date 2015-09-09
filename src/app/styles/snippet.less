@@ -7,10 +7,28 @@
   font-family: "Lucida Sans Unicode", "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
   line-height: 1.52381;
 
-  p span.correct {
-    color: green;
-  }
-  p span.incorrect {
-    color: red;
+  pre {
+    margin: 0 5em 0 25%;
+    text-align: left;
+    padding: 2em 0;
+    position: relative;
+    transition: opacity .5s;
+    opacity: 1;
+    filter: alpha(opacity=100);
+    overflow: visible;
+    line-height: 1.3em;
+    font-size: 14px;
+    font-family: "Ubuntu Mono",monospace;
+    white-space: -moz-pre-wrap!important;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+
+    span.correct {
+      color: green;
+    }
+    span.incorrect {
+      color: red;
+    }
   }
 }
