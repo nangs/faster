@@ -1,31 +1,14 @@
-.words-per-minute {
-  position: relative;
-  svg {
-    width: 100px;
-    height: 100px;
+@import url(https://fonts.googleapis.com/css?family=Puritan:400,700|Oswald);
 
-    circle {
-      fill: transparent;
-      stroke: green;
-      stroke-width: 2px;
-      stroke-dasharray: 75 100;
-    }
-
-    rect {
-      width: 32px;
-      height: 16px;
-    }
-  }
-  span{
-    position: absolute;
-    top: 0;
-    display: block;
-    width: 100px;
-    transform: translateY(28%);
-    height: 100%;
+.gauge {
+  vertical-align: top;
+  display: inline-block;
+  .gauge-label {
     font-size: 2em;
     text-align: center;
+    font-family: 'Oswald';
     text-transform: uppercase;
     font-weight: bold;
+    color: black;
   }
 }

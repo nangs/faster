@@ -58,6 +58,7 @@ function getNextState(event){
 		if(keyCode !== KeyCode.Enter) return;
 		hasStarted = true;
 		beginTime = (new Date).getTime();
+		wpm = accuracy = 0;
 		snippet = getNextSnippet();
 		let suggestions = getSuggestions(snippet.charAt(index));
 		suggestedKeys = suggestions.suggestedKeys;
@@ -91,7 +92,7 @@ function getNextState(event){
 }
 
 function setup(){
-	wpm = accuracy = hasStarted = beginTime = index = isShift = 0;
+	hasStarted = beginTime = index = isShift = 0;
 	snippet = "Press enter to start!";
 	suggestedKeys = ["enter"];
 	suggestedFinger = "rpinky";

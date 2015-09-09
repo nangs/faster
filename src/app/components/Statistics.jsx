@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Pie from './Pie';
-import Speedometer from './Speedometer';
+import Gauge from './Gauge';
 
 export default React.createClass({
 	mixins: [],
@@ -16,7 +16,10 @@ export default React.createClass({
 		}
 
 		return (<div className="statistics" style={display}>
-			<Speedometer wpm={wpm} show={show}/>
+			<Gauge value={wpm} size={20} radius={100} label="WPM"
+								sections={["#8cc152", "#ffb74d", "#ffb74d", "#e84528", "#e84528", "#e84528"]}
+								arrow={{height: 60, width: 6, color: "#ccc"}}
+								legend={['0', '20', '40', '60', '80', '100+']}/>
 			<Pie percentage={accuracy} show={show}/>
     </div>)
 	}
