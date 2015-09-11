@@ -16,8 +16,9 @@ import {CORRECT, INCORRECT, UNVISITED} from './../constants/SnippetStates';
 
 var keypress = new DispatchedActionHandler(PayloadSources.View, KeyboardActionTypes.Keypress, (store, action) => {
 	let keypressEvent = action.payload;
-
-	if(keypressEvent.keyCode === KeyCode.BackSpace || keypressEvent.keyCode === KeyCode.Space)
+	if(keypressEvent.keyCode === KeyCode.BackSpace
+		|| keypressEvent.keyCode === KeyCode.Space
+		|| keypressEvent.keyCode === KeyCode.Tab)
 		keypressEvent.preventDefault();
 
 	getNextState(keypressEvent);
@@ -99,9 +100,16 @@ function setup(){
 	snippet = 'Press enter to start!';
 	suggestedKeys = ['enter'];
 	suggestedFinger = 'rpinky';
+	typos = [];
 }
 
 function getSuggestions (character){
+	let charType = character.charCodeAt(0);
+	if(charType===10)
+		return { suggestedKeys: ["enter"], suggestedFinger: 'rpinky' }
+	if(charType===9)
+		return { suggestedKeys: ["tab"], suggestedFinger: 'lpinky' }
+
 	for(var finger in Fingers){
 			if(_.contains(Fingers[finger], character.toLowerCase()))
 				return { suggestedKeys: Fingers[finger], suggestedFinger: finger };

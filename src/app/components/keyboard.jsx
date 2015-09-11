@@ -36,7 +36,7 @@ export default React.createClass({
 						<Key defaultKey="backspace" size="two" type={CONTROL}/>
           </section>
           <section className="key-row">
-						<Key defaultKey="tab" size="one-one-half" side="l" type={CONTROL} />
+						<Key suggestedKeys={S} defaultKey="tab" size="one-one-half" side="l" type={CONTROL} />
 						<Key suggestedKeys={S} defaultKey="q" size="one" type={LETTER} />
 						<Key suggestedKeys={S} defaultKey="w" size="one" type={LETTER} />
 						<Key suggestedKeys={S} defaultKey="e" size="one" type={LETTER} />
