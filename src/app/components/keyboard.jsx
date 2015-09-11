@@ -47,8 +47,8 @@ export default React.createClass({
 						<Key suggestedKeys={S} defaultKey="i" size="one" type={LETTER} />
 						<Key suggestedKeys={S} defaultKey="o" size="one" type={LETTER} />
 						<Key suggestedKeys={S} defaultKey="p" size="one" type={LETTER} />
-						<Key suggestedKeys={S} defaultKey="[" shiftKey="&lbrace;" size="one" type={SYMBOL} />
-						<Key suggestedKeys={S} defaultKey="]" shiftKey="&rbrace;" size="one" type={SYMBOL} />
+						<Key suggestedKeys={S} defaultKey="[" shiftKey="&#123;" size="one" type={SYMBOL} />
+						<Key suggestedKeys={S} defaultKey="]" shiftKey="&#125;" size="one" type={SYMBOL} />
 						<Key suggestedKeys={S} defaultKey="\" shiftKey="|" size="one" type={SYMBOL} />
           </section>
           <section className="key-row">
