@@ -116,9 +116,9 @@ export default React.createClass({
   _animateArrow(el, perc, width, height) {
     var scope = this;
     return el.transition()
-        .delay(500)
+        .delay(0)
         .ease('elastic')
-        .duration(4000)
+        .duration(1)
         .selectAll('.gauge-arrow')
         .tween('progress', () => {
           return function(percentOfPercent) {
