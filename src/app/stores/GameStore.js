@@ -62,6 +62,7 @@ function getNextState(event){
 		wpm = accuracy = 0;
 		let snippets = SNIPPETS[settings.language];
 		snippet = snippets[ Math.round(Math.random()) % snippets.length];
+		typos = Array.apply(null, {length: snippet.length}).map(() => {return UNVISITED;});
 		let suggestions = getSuggestions(snippet.charAt(index));
 		suggestedKeys = suggestions.suggestedKeys;
 		suggestedFinger = suggestions.suggestedFinger;
@@ -98,7 +99,6 @@ function setup(){
 	snippet = 'Press enter to start!';
 	suggestedKeys = ['enter'];
 	suggestedFinger = 'rpinky';
-	typos = Array.apply(null, {length: snippet.length}).map(() => {return UNVISITED;});
 }
 
 function getSuggestions (character){
