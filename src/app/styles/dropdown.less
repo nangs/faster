@@ -1,0 +1,61 @@
+.dropdown {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    cursor: pointer;
+    height: 50px;
+    width: 200px;
+    border: 0;
+    font-size: 1em;
+    font-family: 'Oswald';
+
+    .selected {
+      display: table;
+      height: 50px;
+        span {
+          display: table-cell;
+          vertical-align: middle;
+        }
+    }
+
+    .caret {
+      position: absolute;
+      right: 0;
+      top: 20px;
+      width: 0;
+      height: 0;
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+      border-top: 10px solid black;
+    }
+
+    .options {
+      position: absolute;
+      top: 50px;
+      left:0;
+      display: inline-block;
+      height: auto;
+      width: 100%;
+      background-color: white;
+      border-top: 0;
+      border-bottom: 0;
+      border-left: 1px;
+      border-right: 1px;
+      border-color: grey;
+      border-style: solid;
+      .option {
+        display: none;
+      }
+    }
+
+    &.show .options .option {
+      display: block;
+      height: 30px;
+      width: 100%;
+      border-bottom: 1px solid grey;
+
+      &:hover {
+        background-color: #fafafa;
+      }
+    }
+}

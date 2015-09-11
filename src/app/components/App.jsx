@@ -19,7 +19,7 @@ export default React.createClass({
 	},
 	render: function () {
 		return (<div className="container">
-			<Navigation />
+			<Navigation languages={this.state.settings.languages} language={this.state.settings.language} showDropdown={this.state.settings.showDropdown}/>
 			<div id="game">
 				<Statistics wpm={this.state.stats.wpm} accuracy={this.state.stats.accuracy} show={this.state.settings.showStatistics}/>
 				<Snippet snippet={this.state.game.snippet} typos={this.state.game.typos} />

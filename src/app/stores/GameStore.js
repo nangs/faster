@@ -14,6 +14,7 @@ import {LANGUAGES, SNIPPETS} from './../constants/Languages';
 import Fingers from './../constants/Fingers';
 import {CORRECT, INCORRECT, UNVISITED} from './../constants/SnippetStates';
 
+/* Mutations */
 var keypress = new DispatchedActionHandler(PayloadSources.View, KeyboardActionTypes.Keypress, (store, action) => {
 	let keypressEvent = action.payload;
 	if(keypressEvent.keyCode === KeyCode.BackSpace
@@ -29,19 +30,31 @@ var showSettings = new DispatchedActionHandler(PayloadSources.View, SettingsActi
 	settings[setting] = !settings[setting];
 });
 
+var showDropdown = new DispatchedActionHandler(PayloadSources.View, SettingsActionTypes.ShowDropdown, (store, action) => {
+	settings.showDropdown = !settings.showDropdown;
+});
+
+var setLanguage = new DispatchedActionHandler(PayloadSources.View, SettingsActionTypes.SelectLanguage, (store, action) => {
+	settings.language = action.payload;
+});
+
+/* State */
 let beginTime, wpm, accuracy;
 let hasStarted, index, snippet, isShift, typos, suggestedKeys, suggestedFinger;
 let settings = {
 	showStatistics: true,
 	showKeyboard: true,
 	showHands: true,
-	language: LANGUAGES[0]
+	showDropdown: false,
+	language: LANGUAGES[0],
+	languages: LANGUAGES
 };
 setup();
 
+/* Store */
 class GameStore extends Store {
 	constructor(dispatcher) {
-		super(dispatcher, [keypress, showSettings]);
+		super(dispatcher, [keypress, showSettings, showDropdown, setLanguage]);
 	}
 	getGame() {
 		return [wpm, accuracy, hasStarted, snippet, isShift, typos, suggestedKeys, suggestedFinger, settings];

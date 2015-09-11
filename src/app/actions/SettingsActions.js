@@ -13,6 +13,14 @@ class SettingsActions {
   showSettings(setting){
     this.dispatcher.handleViewAction(new Action(this.actions.ShowSettings, setting));
   }
+
+  showDropdown(){
+    this.dispatcher.handleViewAction(new Action(this.actions.ShowDropdown, null));
+  }
+
+  selectOption(option){
+    this.dispatcher.handleViewAction(new Action(this.actions.SelectLanguage, option));
+  }
 }
 
 export default new SettingsActions(AppDispatcher, ActionTypes);
