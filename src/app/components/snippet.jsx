@@ -1,7 +1,6 @@
 'use strict';
 
 import React from 'react';
-import Prettify from './../lib/prettify';
 
 export default React.createClass({
 	mixins: [],
