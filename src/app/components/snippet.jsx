@@ -1,14 +1,15 @@
 'use strict';
 
 import React from 'react';
+import Prettify from './../lib/prettify';
 
 export default React.createClass({
 	mixins: [],
 	getDefaultProps: getDefaultProps,
 	render: function () {
-		var snippetMarkup = this.props.snippet.split('').map(generateCharacter.bind(this));
+		var snippetMarkup = this.props.snippet.split('').map((generateCharacter.bind(this)));
 		return (<div className="snippet">
-      <pre className="code center"> {snippetMarkup} </pre>
+      <pre className="center">{snippetMarkup}</pre>
     </div>)
 	}
 });
@@ -21,5 +22,11 @@ function getDefaultProps(){
 }
 
 function generateCharacter(character, index){
-	return (<span key={index} className={this.props.typos[index]}> {character} </span>)
+	let charType = character.charCodeAt(0);
+	let className = this.props.typos[index];
+	if(charType===10)
+		className += " newline";
+	if(charType===9)
+		className += " tab";
+	return (<span key={index} className={className}>{character}</span>)
 }
