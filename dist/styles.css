@@ -27,6 +27,58 @@ nav img {
   height: 50px;
   cursor: pointer;
 }
+.dropdown {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  cursor: pointer;
+  height: 50px;
+  width: 200px;
+  border: 0;
+  font-size: 1em;
+  font-family: 'Oswald';
+}
+.dropdown .selected {
+  display: table;
+  height: 50px;
+}
+.dropdown .selected span {
+  display: table-cell;
+  vertical-align: middle;
+}
+.dropdown .caret {
+  position: absolute;
+  right: 0;
+  top: 20px;
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 10px solid black;
+}
+.dropdown .options {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  display: inline-block;
+  height: auto;
+  width: 100%;
+  background-color: white;
+  border-top: 0;
+  border-bottom: 0;
+  border-left: 1px;
+  border-right: 1px;
+  border-color: grey;
+  border-style: solid;
+}
+.dropdown .options .option {
+  height: 30px;
+  width: 100%;
+  border-bottom: 1px solid grey;
+}
+.dropdown .options .option:hover {
+  background-color: #fafafa;
+}
 .snippet {
   word-spacing: 0px;
   letter-spacing: -6px;
