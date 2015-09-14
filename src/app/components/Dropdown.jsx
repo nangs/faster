@@ -12,25 +12,33 @@ export default React.createClass({
 			showDropdown: false
 		}
 	},
+	getInitialState: () => {
+		return { show: false }
+	},
 	render: function () {
 
 		let {selected, options, showDropdown} = this.props;
 
-		let isShownClass = "dropdown" + (showDropdown ? " show" : "");
+		let isShown = {
+			display: this.state.show ? "block" : "none"
+		}
+
 		var optionsMarkup = options.map((language, index)=>{
 			return (<div key={index} className="option" onClick={selectOption.bind(this, language)}>{language}</div>)
 		});
 
-		return (<div className={isShownClass} onClick={viewDropdown.bind(this)}>
+		return (<div className="dropdown" onClick={viewDropdown.bind(this)}>
 							<div className="selected"><span>{selected}</span></div>
 							<div className="caret"></div>
-							<div className="options">{optionsMarkup}</div>
+							<div style={isShown} className="options">{optionsMarkup}</div>
 						</div>)
 	}
 });
 
 function viewDropdown(){
-	SettingsActions.showDropdown();
+	this.setState({
+		show: !this.state.show
+	});
 }
 
 function selectOption(option){

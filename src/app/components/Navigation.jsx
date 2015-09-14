@@ -26,7 +26,7 @@ export default React.createClass({
 				<img src="./audio.svg" />
 				<img src="./keyboard.svg" onClick={showKeyboard.bind(this)}/>
 				<img src="./show-hands.svg" onClick={showHands.bind(this)}/>
-				<Dropdown selected={this.props.language} options={this.props.languages} showDropdown={this.props.showDropdown}/>
+				<Dropdown selected={this.props.language} options={this.props.languages}/>
       </nav>)
 	}
 });

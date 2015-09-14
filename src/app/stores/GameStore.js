@@ -30,10 +30,6 @@ var showSettings = new DispatchedActionHandler(PayloadSources.View, SettingsActi
 	settings[setting] = !settings[setting];
 });
 
-var showDropdown = new DispatchedActionHandler(PayloadSources.View, SettingsActionTypes.ShowDropdown, (store, action) => {
-	settings.showDropdown = !settings.showDropdown;
-});
-
 var setLanguage = new DispatchedActionHandler(PayloadSources.View, SettingsActionTypes.SelectLanguage, (store, action) => {
 	settings.language = action.payload;
 });
@@ -45,7 +41,6 @@ let settings = {
 	showStatistics: true,
 	showKeyboard: true,
 	showHands: true,
-	showDropdown: false,
 	language: LANGUAGES[0],
 	languages: LANGUAGES
 };
@@ -54,7 +49,7 @@ setup();
 /* Store */
 class GameStore extends Store {
 	constructor(dispatcher) {
-		super(dispatcher, [keypress, showSettings, showDropdown, setLanguage]);
+		super(dispatcher, [keypress, showSettings, setLanguage]);
 	}
 	getGame() {
 		return [wpm, accuracy, hasStarted, snippet, isShift, typos, suggestedKeys, suggestedFinger, settings];
