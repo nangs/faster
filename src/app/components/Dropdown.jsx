@@ -17,7 +17,7 @@ export default React.createClass({
 	},
 	render: function () {
 
-		let {selected, options, showDropdown} = this.props;
+		let {selected, options} = this.props;
 
 		let isShown = {
 			display: this.state.show ? "block" : "none"
