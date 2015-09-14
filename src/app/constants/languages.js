@@ -12,8 +12,8 @@ var javascriptSnippets = [
 ];
 
 export const LANGUAGES = [
-  "Java",
-  "JavaScript"
+  'Java',
+  'JavaScript'
 ];
 
 export const SNIPPETS = {
