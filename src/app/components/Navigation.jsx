@@ -9,6 +9,7 @@ require('./../styles/assets/cancel.svg');
 import React from 'react';
 import Dropdown from './Dropdown';
 import SettingsActions from './../actions/SettingsActions';
+import DropdownActions from './../actions/DropdownActions';
 import {SHOWKEYBOARD, SHOWSTATISTICS, SHOWHANDS} from './../constants/Settings';
 
 export default React.createClass({
@@ -26,7 +27,7 @@ export default React.createClass({
 				<img src="./audio.svg" />
 				<img src="./keyboard.svg" onClick={showKeyboard.bind(this)}/>
 				<img src="./show-hands.svg" onClick={showHands.bind(this)}/>
-				<Dropdown selected={this.props.language} options={this.props.languages}/>
+				<Dropdown selected={this.props.language} options={this.props.languages} action={DropdownActions}/>
       </nav>)
 	}
 });

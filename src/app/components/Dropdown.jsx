@@ -1,7 +1,6 @@
 'use strict';
 
 import React from 'react';
-import SettingsActions from './../actions/SettingsActions';
 
 export default React.createClass({
 	mixins: [],
@@ -9,7 +8,7 @@ export default React.createClass({
 		return {
 			selected: "Options...",
 			options: [],
-			showDropdown: false
+			selectionAction: () => {}
 		}
 	},
 	getInitialState: () => {
@@ -17,14 +16,14 @@ export default React.createClass({
 	},
 	render: function () {
 
-		let {selected, options} = this.props;
+		let {selected, options, action} = this.props;
 
 		let isShown = {
 			display: this.state.show ? "block" : "none"
 		}
 
-		var optionsMarkup = options.map((language, index)=>{
-			return (<div key={index} className="option" onClick={selectOption.bind(this, language)}>{language}</div>)
+		var optionsMarkup = options.map((option, index)=>{
+			return (<div key={index} className="option" onClick={createAction.bind(this, action, option)}>{option}</div>)
 		});
 
 		return (<div className="dropdown" onClick={viewDropdown.bind(this)}>
@@ -41,6 +40,6 @@ function viewDropdown(){
 	});
 }
 
-function selectOption(option){
-	SettingsActions.selectOption(option);
+function createAction(action, option){
+	action.selectOption(option);
 }

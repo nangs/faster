@@ -2,7 +2,7 @@
 
 class ActionTypes {
 	constructor() {
-		this.ShowSettings = 'Settings.ShowSettings';
+		this.SelectOption = 'Dropdown.SelectOption';
 	}
 }
 export default Object.freeze(new ActionTypes());

@@ -3,6 +3,7 @@
 import Store from './../lib/Store';
 import KeyboardActionTypes from './../constants/actions/KeyboardActions';
 import SettingsActionTypes from './../constants/actions/SettingsActions';
+import DropdownActionTypes from './../constants/actions/DropdownActions';
 import PayloadSources from './../constants/PayloadSources';
 import DispatchedActionHandler from './../lib/DispatchedActionHandler';
 import AppDispatcher from './../dispatcher/AppDispatcher';
@@ -30,7 +31,7 @@ var showSettings = new DispatchedActionHandler(PayloadSources.View, SettingsActi
 	settings[setting] = !settings[setting];
 });
 
-var setLanguage = new DispatchedActionHandler(PayloadSources.View, SettingsActionTypes.SelectLanguage, (store, action) => {
+var setLanguage = new DispatchedActionHandler(PayloadSources.View, DropdownActionTypes.SelectOption, (store, action) => {
 	settings.language = action.payload;
 });
 
