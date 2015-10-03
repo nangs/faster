@@ -67,7 +67,7 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	eval("/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require(\"/Users/walkersmith/Repositories/faster/node_modules/react-hot-loader/node_modules/react-hot-api/modules/index.js\"), RootInstanceProvider = require(\"/Users/walkersmith/Repositories/faster/node_modules/react-hot-loader/RootInstanceProvider.js\"), ReactMount = require(\"react/lib/ReactMount\"), React = require(\"react\"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {\n\n'use strict';\n\nvar _interopRequireDefault = __webpack_require__(10)['default'];\n\nvar _React = __webpack_require__(11);\n\nvar _React2 = _interopRequireDefault(_React);\n\nvar _ReactDom = __webpack_require__(165);\n\nvar _ReactDom2 = _interopRequireDefault(_ReactDom);\n\nvar _App = __webpack_require__(166);\n\nvar _App2 = _interopRequireDefault(_App);\n\n'use strict';\n\n_ReactDom2['default'].render(_React2['default'].createElement(_App2['default'], null), document.getElementById('app'));\n\n/* REACT HOT LOADER */ })(); if (false) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = require(\"/Users/walkersmith/Repositories/faster/node_modules/react-hot-loader/makeExportsHot.js\"), foundReactClasses = false; if (makeExportsHot(module, require(\"react\"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error(\"Cannot not apply hot update to \" + \"index.jsx\" + \": \" + err.message); } }); } } })(); }\n\n/*****************\n ** WEBPACK FOOTER\n ** ./src/app/index.jsx\n ** module id = 0\n ** module chunks = 0\n **/\n//# sourceURL=webpack:///./src/app/index.jsx?");
+	eval("/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require(\"/Users/walkersmith/Repositories/faster/node_modules/react-hot-loader/node_modules/react-hot-api/modules/index.js\"), RootInstanceProvider = require(\"/Users/walkersmith/Repositories/faster/node_modules/react-hot-loader/RootInstanceProvider.js\"), ReactMount = require(\"react/lib/ReactMount\"), React = require(\"react\"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {\n\n'use strict';\n\nvar _interopRequireDefault = __webpack_require__(10)['default'];\n\nvar _React = __webpack_require__(11);\n\nvar _React2 = _interopRequireDefault(_React);\n\nvar _ReactDom = __webpack_require__(165);\n\nvar _ReactDom2 = _interopRequireDefault(_ReactDom);\n\nvar _App = __webpack_require__(166);\n\nvar _App2 = _interopRequireDefault(_App);\n\n'use strict';\n\n__webpack_require__(248);\n__webpack_require__(249);\n__webpack_require__(250);\n__webpack_require__(251);\n__webpack_require__(252);\n\n_ReactDom2['default'].render(_React2['default'].createElement(_App2['default'], null), document.getElementById('app'));\n\n/* REACT HOT LOADER */ })(); if (false) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = require(\"/Users/walkersmith/Repositories/faster/node_modules/react-hot-loader/makeExportsHot.js\"), foundReactClasses = false; if (makeExportsHot(module, require(\"react\"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error(\"Cannot not apply hot update to \" + \"index.jsx\" + \": \" + err.message); } }); } } })(); }\n\n/*****************\n ** WEBPACK FOOTER\n ** ./src/app/index.jsx\n ** module id = 0\n ** module chunks = 0\n **/\n//# sourceURL=webpack:///./src/app/index.jsx?");
 
 /***/ },
 /* 1 */,
@@ -1496,6 +1496,36 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	eval("'use strict';\n\nvar _Object$defineProperty = __webpack_require__(189)['default'];\n\n_Object$defineProperty(exports, '__esModule', {\n  value: true\n});\n\n'use strict';\n\nvar CORRECT = 'correct';\nexports.CORRECT = CORRECT;\nvar INCORRECT = 'incorrect';\nexports.INCORRECT = INCORRECT;\nvar UNVISITED = 'unvisted';\nexports.UNVISITED = UNVISITED;\n\n/*****************\n ** WEBPACK FOOTER\n ** ./src/app/constants/SnippetStates.js\n ** module id = 247\n ** module chunks = 0\n **/\n//# sourceURL=webpack:///./src/app/constants/SnippetStates.js?");
+
+/***/ },
+/* 248 */
+/***/ function(module, exports, __webpack_require__) {
+
+	eval("module.exports = __webpack_require__.p + \"icon.png\"\n\n/*****************\n ** WEBPACK FOOTER\n ** ./src/app/styles/assets/icon.png\n ** module id = 248\n ** module chunks = 0\n **/\n//# sourceURL=webpack:///./src/app/styles/assets/icon.png?");
+
+/***/ },
+/* 249 */
+/***/ function(module, exports, __webpack_require__) {
+
+	eval("module.exports = __webpack_require__.p + \"apple-icon-57x57.png\"\n\n/*****************\n ** WEBPACK FOOTER\n ** ./src/app/styles/assets/apple-icon-57x57.png\n ** module id = 249\n ** module chunks = 0\n **/\n//# sourceURL=webpack:///./src/app/styles/assets/apple-icon-57x57.png?");
+
+/***/ },
+/* 250 */
+/***/ function(module, exports, __webpack_require__) {
+
+	eval("module.exports = __webpack_require__.p + \"apple-icon-72x72.png\"\n\n/*****************\n ** WEBPACK FOOTER\n ** ./src/app/styles/assets/apple-icon-72x72.png\n ** module id = 250\n ** module chunks = 0\n **/\n//# sourceURL=webpack:///./src/app/styles/assets/apple-icon-72x72.png?");
+
+/***/ },
+/* 251 */
+/***/ function(module, exports, __webpack_require__) {
+
+	eval("module.exports = __webpack_require__.p + \"apple-icon-114x114.png\"\n\n/*****************\n ** WEBPACK FOOTER\n ** ./src/app/styles/assets/apple-icon-114x114.png\n ** module id = 251\n ** module chunks = 0\n **/\n//# sourceURL=webpack:///./src/app/styles/assets/apple-icon-114x114.png?");
+
+/***/ },
+/* 252 */
+/***/ function(module, exports, __webpack_require__) {
+
+	eval("module.exports = __webpack_require__.p + \"apple-icon-144x144.png\"\n\n/*****************\n ** WEBPACK FOOTER\n ** ./src/app/styles/assets/apple-icon-144x144.png\n ** module id = 252\n ** module chunks = 0\n **/\n//# sourceURL=webpack:///./src/app/styles/assets/apple-icon-144x144.png?");
 
 /***/ }
 /******/ ])));
