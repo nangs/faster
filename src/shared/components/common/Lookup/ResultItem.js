@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { EpicIcon } from './../Icons';
+import { CheckMarkIcon } from './../Icons';
 
 export default class ResultItem extends Component {
     static propTypes = {
@@ -105,7 +105,7 @@ export default class ResultItem extends Component {
                  onMouseLeave={this.onMouseLeave}
             >
                 <div style={leftStyles}>
-                    <EpicIcon />
+                    <CheckMarkIcon />
                 </div>
                 <div style={middleStyles}>
                     {result.text}
