@@ -3,18 +3,15 @@ import KeyCode from './../../constants/KeyCode';
 import { keyboard, shiftKeyboard } from './../../constants/Keyboard';
 import { SNIPPETS } from './../../constants/Languages';
 import { CORRECT, INCORRECT, UNVISITED } from './../../constants/SnippetStates';
-import { DEFAULT_STATE } from './reducer';
 import { getIndex } from './../utils';
 
 const START_ROUND = 'START_ROUND';
 const TOGGLE_SHIFT = 'TOGGLE_SHIFT';
 const RECORD_TYPO_TYPE = 'RECORD_TYPO_TYPE';
-const ROUND_COMPLETED = 'ROUND_COMPLETED';
 
 const startRound = createAction(START_ROUND, language => ({ language }));
 const setShift = createAction(TOGGLE_SHIFT, isShift => ({ isShift }));
 const recordTypoType = createAction(RECORD_TYPO_TYPE, (index, type) => ({ index, type }));
-const roundCompleted = createAction(ROUND_COMPLETED);
 
 export const handleKeypress = (keyCode, shiftKey) => (dispatch, getState) => {
     const currentState = getState().atom;
@@ -42,12 +39,6 @@ export const handleKeypress = (keyCode, shiftKey) => (dispatch, getState) => {
             dispatch(recordTypoType(index, typoType));
         }
         dispatch(setShift(false));
-
-        const newIndex = getIndex(getState().atom.typos);
-        const roundComplete = newIndex === snippet.length;
-        if(roundComplete) {
-            dispatch(roundCompleted())
-        }
     }
 };
 
@@ -88,13 +79,10 @@ const handleRecordTypoType = (state, action) => {
     };
 };
 
-const handleRoundCompleted = (state, action) => Object.assign({}, state, DEFAULT_STATE);
-
 export default {
     [START_ROUND]: handleStartRound,
     [TOGGLE_SHIFT]: handleSetShift,
-    [RECORD_TYPO_TYPE]: handleRecordTypoType,
-    [ROUND_COMPLETED]: handleRoundCompleted
+    [RECORD_TYPO_TYPE]: handleRecordTypoType
 }
 
 const getWPM = (beginTime, index) => {

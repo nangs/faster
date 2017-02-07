@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Actions } from './../../state';
-import Statistics from './Statistics';
+import { Actions, Selectors } from './../../state';
+import RoundBreakdown from './RoundBeakdown';
 import Snippet from './Snippet';
 import Hands from './Hands';
 import Keyboard from './Keyboard';
@@ -10,6 +10,7 @@ import KeyCode from './../../constants/KeyCode';
 
 const mapStateToProps = (state) => ({
     hasStarted: state.atom.hasStarted,
+    isRoundOver: Selectors.isRoundOver(state),
     snippet: state.atom.snippet,
     isShift: state.atom.isShift,
     typos: state.atom.typos,
@@ -43,13 +44,15 @@ export class Round extends Component {
     }
     
     render() {
-        return (
+        
+        return this.props.isRoundOver ? (
+            <RoundBreakdown />
+        ) : (
             <div id="game">
-                <Statistics />
                 <Snippet />
                 <Keyboard />
                 <Hands />
             </div>
-        )
+        );
     }
 }
