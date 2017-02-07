@@ -64,11 +64,6 @@ router.post('/resendVerificationEmail', routes.resendVerificationEmail);
 router.post('/forgotPassword', routes.forgotPassword);
 router.post('/resetPassword', routes.resetPassword);
 router.post('/userProfile', routes.userProfile);
-router.post('/getCategories', routes.getCategories);
-router.post('/addCard', routes.addCard);
-router.post('/removeCard', routes.removeCard);
-router.post('/moveCard', routes.moveCard);
-router.post('/updateCard', routes.updateCard);
 
 app.use('/api', router);
 app.use('/', defaultRoute);

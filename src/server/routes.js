@@ -1,4 +1,4 @@
-import { Token, User, Category, Card } from './models';
+import { Token, User } from './models';
 import { sendResetPasswordEmail, sendVerificationEmail } from './mailer';
 
 export default (req, res) => {
@@ -203,68 +203,6 @@ const userProfile = (req, res) => {
         .catch(error => res.status(500).send(error))
 };
 
-const getCategories = (req, res) => {
-    getUserData(req.body.userId)
-        .then(userData => res.status(200).send(userData))
-        .catch(error => res.status(500).send());
-};
-
-const getUserData = (userId) => new Promise((resolve, reject) => {
-    Card.find({ userId }).then(cards => {
-        Category.find({ userId }).then(categories => {
-            resolve({ cards, categories });
-        });
-    }).catch(error => reject(error));
-});
-
-
-const addCard = (req, res) => {
-    const { categoryId, name, comment, userId } = req.body;
-
-    const card = new Card({
-        name, comment, userId
-    });
-
-    card.save((err, data) => {
-        if(err) res.status(500).send(err);
-        Category.findById({ _id: categoryId }).then(category => {
-            category.cards.push(data._id);
-            category.save((saveErr) => {
-                if(saveErr) res.status(500).send(saveErr);
-                getCategories(req, res);
-            });
-        });
-    });
-};
-
-const updateCard = (req, res) => {
-    const { _id, name, comment, userId } = req.body;
-    Card.findOneAndUpdate({ _id }, { name, comment }, err => {
-        if(err) res.status(500).send();
-        getCategories(req, res);
-    });
-};
-
-const removeCard = (req, res) => {
-    Card.remove({ _id: req.body._id }, (err) => {
-        if(err) res.status(500).send();
-        getCategories(req, res);
-    });
-};
-
-const moveCard = (req, res) => {
-    console.log("categories");
-    console.log(req.body.categories);
-    req.body.categories.forEach(category => {
-        console.log("category");
-        console.log(category);
-        Category
-            .collection
-            .update({ _id: category._id }, category)
-    });
-    return res.status(200).send();
-};
-
 export const routes = {
     forgotPassword,
     resendVerificationEmail,
@@ -273,10 +211,5 @@ export const routes = {
     login,
     signUp,
     logout,
-    userProfile,
-    getCategories,
-    addCard,
-    updateCard,
-    removeCard,
-    moveCard
+    userProfile
 };
