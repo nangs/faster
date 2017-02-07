@@ -1,11 +1,12 @@
 var webpack = require('webpack');
-var defaultConfig = require('./webpack.default.config');
+var path = require('path');
 var _ = require('lodash');
+var defaultConfig = require('./webpack.default.config');
 
-module.exports = _.extend({}, defaultConfig, {
-    name: 'Development Webpack',
-    cache: false,
+var prodConfig = _.extend({}, defaultConfig, {
+    name: 'Production Webpack',
     devtool: 'source-map',
+    entry: path.resolve(__dirname, '../', 'src', 'client', 'index.js'),
     plugins: [
         new webpack.LoaderOptionsPlugin({
             debug: false
@@ -15,6 +16,13 @@ module.exports = _.extend({}, defaultConfig, {
                 BROWSER: true,
                 NODE_ENV: 'production'
             })
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+            sourceMap: true
         })
     ]
 });
+
+prodConfig.plugins = defaultConfig.plugins.concat(prodConfig.plugins);
+
+module.exports = prodConfig;

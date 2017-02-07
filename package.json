@@ -12,8 +12,6 @@
     "url": "http://github.com/walkerrandolphsmith/faster.github.com/issues"
   },
   "scripts": {
-    "watch": "webpack --config webpack/webpack.dev.config.js --watch",
-    "build": "webpack --config webpack/webpack.dev.config.js",
     "build:prod": "webpack --config webpack/webpack.prod.config.js --output-path",
     "lint": "eslint -c .eslintrc --cache .",
     "test": "ava"
@@ -84,6 +82,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-rm": "^1.0.1",
     "gulp-shell": "^0.5.2",
+    "happypack": "^3.0.2",
     "nodemon": "^1.9.2",
     "require-dir": "^0.3.0",
     "script-loader": "^0.7.0",

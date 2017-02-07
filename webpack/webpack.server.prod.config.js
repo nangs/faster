@@ -1,10 +1,10 @@
-var webpack = require('webpack');
 var path = require('path');
 var fs = require('fs');
-
-var nodeModulesPath = path.resolve(__dirname, '..', 'node_modules');
-var buildPath = path.resolve(__dirname, '..', 'dist');
-var mainPath = path.resolve(__dirname, '..', 'src', 'server', 'index.js');
+var webpack = require('webpack');
+var _ = require('lodash');
+var defaultConfig = require('./webpack.default.config');
+var buildPath = path.resolve(__dirname, '../', 'dist');
+var mainPath = path.resolve(__dirname, '../', 'src', 'server', 'index.js');
 
 var nodeModules = {};
 fs.readdirSync('node_modules')
@@ -15,7 +15,8 @@ fs.readdirSync('node_modules')
         nodeModules[mod] = 'commonjs ' + mod;
     });
 
-module.exports = {
+
+module.exports = _.extend({}, defaultConfig, {
     target: 'node',
     libraryTarget : 'commonjs',
     context: __dirname,
@@ -37,10 +38,5 @@ module.exports = {
                 NODE_ENV: JSON.stringify("production")
             }
         })
-    ],
-    module: {
-        rules: [
-            { test: /\.jsx?$/, loaders: ['babel-loader'], exclude: [nodeModulesPath] }
-        ]
-    }
-};
+    ]
+});
