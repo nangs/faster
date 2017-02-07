@@ -29,8 +29,7 @@ export const handleKeypress = (keyCode, shiftKey) => (dispatch, getState) => {
         const key = shiftKey ? shiftKeyboard[keyCode] : keyboard[keyCode];
         const index = getIndex(typos);
         if(keyCode === KeyCode.BackSpace) {
-            if (index > 0)
-                dispatch(recordTypoType(index - 1, UNVISITED));
+            dispatch(recordTypoType(index - 1, UNVISITED));
         } else {
             const typoType = key === snippet[index] ? CORRECT : INCORRECT;
             dispatch(recordTypoType(index, typoType));
