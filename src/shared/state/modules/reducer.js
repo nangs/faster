@@ -15,7 +15,6 @@ export const DEFAULT_STATE = {
     packageNumber: '0.0.0.0000',
     hasStarted: false,
     beginTime: null,
-    index: 0,
     snippet: 'Press Enter to start.',
     isShift: false,
     typos: [],

@@ -4,23 +4,22 @@ import { keyboard, shiftKeyboard } from './../../constants/Keyboard';
 import { SNIPPETS } from './../../constants/Languages';
 import { CORRECT, INCORRECT, UNVISITED } from './../../constants/SnippetStates';
 import { DEFAULT_STATE } from './reducer';
+import { getIndex } from './../utils';
 
 const START_ROUND = 'START_ROUND';
 const TOGGLE_SHIFT = 'TOGGLE_SHIFT';
 const RECORD_TYPO_TYPE = 'RECORD_TYPO_TYPE';
-const SET_INDEX = 'SET_INDEX';
 const ROUND_COMPLETED = 'ROUND_COMPLETED';
 
 const startRound = createAction(START_ROUND, language => ({ language }));
 const setShift = createAction(TOGGLE_SHIFT, isShift => ({ isShift }));
 const recordTypoType = createAction(RECORD_TYPO_TYPE, (index, type) => ({ index, type }));
-const setIndex = createAction(SET_INDEX, index => ({ index }));
 const roundCompleted = createAction(ROUND_COMPLETED);
 
 export const handleKeypress = (keyCode, shiftKey) => (dispatch, getState) => {
     const currentState = getState().atom;
 
-    const { hasStarted, index, snippet, isShift, language } = currentState;
+    const { hasStarted, snippet, isShift, language, typos } = currentState;
 
     const key = shiftKey ? shiftKeyboard[keyCode] : keyboard[keyCode];
 
@@ -34,29 +33,21 @@ export const handleKeypress = (keyCode, shiftKey) => (dispatch, getState) => {
     } else if(shiftWasOnlyKeyPressed) {
         dispatch(setShift(!isShift));
     } else {
+        const index = getIndex(typos);
         if(keyCode === KeyCode.BackSpace) {
             if (index > 0)
                 dispatch(recordTypoType(index - 1, UNVISITED));
-                dispatch(setIndex(index - 1))
         } else {
             const typoType = key === snippet[index] ? CORRECT : INCORRECT;
             dispatch(recordTypoType(index, typoType));
-            dispatch(setIndex(index + 1))
         }
         dispatch(setShift(false));
-        const newIndex = getState().atom.index;
 
+        const newIndex = getIndex(getState().atom.typos);
         const roundComplete = newIndex === snippet.length;
         if(roundComplete) {
             dispatch(roundCompleted())
         }
-    }
-};
-
-const handleSetIndex = (state, action) => {
-    return {
-        ...state,
-        index: action.index
     }
 };
 
@@ -93,7 +84,6 @@ const handleRecordTypoType = (state, action) => {
 
     return {
         ...state,
-        index: index,
         typos: typos
     };
 };
@@ -104,7 +94,6 @@ export default {
     [START_ROUND]: handleStartRound,
     [TOGGLE_SHIFT]: handleSetShift,
     [RECORD_TYPO_TYPE]: handleRecordTypoType,
-    [SET_INDEX]: handleSetIndex,
     [ROUND_COMPLETED]: handleRoundCompleted
 }
 

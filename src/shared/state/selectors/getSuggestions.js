@@ -1,8 +1,14 @@
 import { createSelector } from 'reselect';
 import Fingers from './../../constants/Fingers';
+import { getIndex } from './../utils';
 
 const snippetSelector = state => state.atom.snippet;
-const indexSelector = state => state.atom.index;
+const typosSelector = state => state.atom.typos;
+
+const indexSelector = createSelector(
+    [typosSelector],
+    (typos) => getIndex(typos)
+);
 
 const characterSelector = createSelector(
     [snippetSelector, indexSelector],
