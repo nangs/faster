@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Selectors } from './../../state';
 import { SYMBOL, SPACEBAR } from './../../constants/KeyType';
 
 
 const mapStateToProps = (state) => ({
-    suggestedKeys: state.atom.suggestedKeys
+    suggestedKeys: Selectors.getSuggestions(state).suggestedKeys
 });
 
 @connect(mapStateToProps)

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Actions } from './../../state';
+import { Actions, Selectors } from './../../state';
 
 const mapStateToProps = (state) => ({
-    suggestedFinger: state.atom.suggestedFinger,
+    suggestedFinger: Selectors.getSuggestions(state).suggestedFinger,
     show: state.atom.settings.showHands
 });
 
@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatcher) => bindActionCreators(Actions, dispatche
 export default class Hands extends Component {
     render() {
         const { suggestedFinger, show } = this.props;
-        
+
         let hand = suggestedFinger.charAt(0);
         let finger = suggestedFinger.charAt(1);
 
