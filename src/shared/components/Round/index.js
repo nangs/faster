@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Actions, Selectors } from './../../state';
-import RoundBreakdown from './RoundBeakdown';
+import RoundBreakdown from './../RoundBreakdown';
 import Snippet from './Snippet';
 import Hands from './Hands';
 import Keyboard from './Keyboard';
