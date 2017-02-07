@@ -35,5 +35,17 @@
     span.incorrect {
       color: red;
     }
+
+    span.active {
+      background-color: yellow;
+    }
+
+    span.active.carriage-return:before {
+      content: '↵';
+      width: 30px;
+      display: inline-block;
+      text-align: center;
+      vertical-align: middle;
+    }
   }
 }
