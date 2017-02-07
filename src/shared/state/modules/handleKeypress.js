@@ -14,11 +14,7 @@ const setShift = createAction(TOGGLE_SHIFT, isShift => ({ isShift }));
 const recordTypoType = createAction(RECORD_TYPO_TYPE, (index, type) => ({ index, type }));
 
 export const handleKeypress = (keyCode, shiftKey) => (dispatch, getState) => {
-    const currentState = getState().atom;
-
-    const { hasStarted, snippet, isShift, language, typos } = currentState;
-
-    const key = shiftKey ? shiftKeyboard[keyCode] : keyboard[keyCode];
+    const { hasStarted, snippet, isShift, language, typos } = getState().atom;
 
     const roundHasNotStarted = !hasStarted;
     const shiftWasOnlyKeyPressed = shiftKey && keyCode === KeyCode.Shift;
@@ -30,6 +26,7 @@ export const handleKeypress = (keyCode, shiftKey) => (dispatch, getState) => {
     } else if(shiftWasOnlyKeyPressed) {
         dispatch(setShift(!isShift));
     } else {
+        const key = shiftKey ? shiftKeyboard[keyCode] : keyboard[keyCode];
         const index = getIndex(typos);
         if(keyCode === KeyCode.BackSpace) {
             if (index > 0)
