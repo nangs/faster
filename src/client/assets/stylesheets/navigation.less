@@ -1,0 +1,92 @@
+.navigation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999999;
+    width: 100%;
+    background-color: #31363e;
+    color: #f2f2f2;
+
+    .logo svg {
+        width: 167px;
+    }
+
+    .info-button {
+        &:hover .info {
+            color: #7AAC4C;
+            border-color: #7AAC4C;
+        }
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 50px;
+        cursor: pointer;
+
+        .info {
+            border: 1px solid white;
+            border-radius: 50%;
+            width: 20px;
+            text-align: center;
+        }
+    }
+
+    .nav-toolbar {
+        justify-content: space-between;
+    }
+
+    .epic-lookup{
+        color: black;
+        height: inherit;
+
+        input {
+            color: #ffffff;
+            background-color: rgba(255,255,255,.2);
+            border: 0;
+            height: 100%;
+            width: 300px;
+
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+}
+
+.application-container {
+    margin-top: 60px;
+}
+
+.info-popover {
+
+    .popover-container > div {
+        display: flex;
+        align-items: center;
+        width: 500px;
+        height: 125px;
+        border: 1px solid black;
+        background: #ffffff;
+        color: #000000;
+    }
+
+    .info-content {
+        padding: 20px;
+
+        label {
+            margin-right: 15px;
+            font-weight: 600;
+        }
+
+        a {
+            cursor: pointer;
+        }
+
+        .send-feedback {
+            display: flex;
+            justify-content: center;
+            padding-top: 10px;
+        }
+    }
+}
