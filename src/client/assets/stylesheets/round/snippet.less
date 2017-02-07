@@ -40,12 +40,25 @@
       background-color: yellow;
     }
 
+    span.active.carriage-return:before,
+    span.active.tab:before {
+      display: inline-block;
+      text-align: center;
+    }
+
     span.active.carriage-return:before {
       content: '↵';
       width: 30px;
-      display: inline-block;
-      text-align: center;
-      vertical-align: middle;
+    }
+
+    span.tab {
+      position: relative;
+    }
+
+    span.active.tab:before {
+      content: '⇥';
+      position: absolute;
+      width: 100%;
     }
   }
 }

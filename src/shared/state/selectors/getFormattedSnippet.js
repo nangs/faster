@@ -13,7 +13,8 @@ export default createSelector(
             className: [
                 typos[i],
                 i === index ? 'active' : 'passive',
-                symbol === '\n' ? 'carriage-return' : ''
+                symbol === '\n' ? 'carriage-return' : '',
+                symbol === '\t' ? 'tab' : ''
             ].join(' ')
         }))
 );
