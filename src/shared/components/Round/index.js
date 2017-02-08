@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Actions, Selectors } from './../../state';
-import RoundBreakdown from './../RoundBreakdown';
 import Snippet from './Snippet';
 import Hands from './Hands';
 import Keyboard from './Keyboard';
@@ -44,15 +43,12 @@ export class Round extends Component {
     }
     
     render() {
-        
-        return this.props.isRoundOver ? (
-            <RoundBreakdown />
-        ) : (
+        return (
             <div id="game">
                 <Snippet />
                 <Keyboard />
                 <Hands />
             </div>
-        );
+        )
     }
 }

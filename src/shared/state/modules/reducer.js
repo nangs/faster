@@ -4,6 +4,7 @@ import logout from './logout';
 import handleKeypress from './handleKeypress';
 import beginNewRound from './beginNewRound';
 import getHistory from './getHistory';
+import setLanguage from './setLanguage';
 import { LANGUAGES } from './../../constants/Languages';
 
 const handlers = [
@@ -12,7 +13,8 @@ const handlers = [
     logout,
     handleKeypress,
     beginNewRound,
-    getHistory
+    getHistory,
+    setLanguage
 ].reduce((output, handler) => Object.assign(output, handler), {});
 
 export const DEFAULT_STATE = {
@@ -32,7 +34,7 @@ export const DEFAULT_STATE = {
     },
     wpm: 0,
     accuracy: 100,
-    language: LANGUAGES[0],
+    language: null,
     languages: LANGUAGES,
     practiceHistory: []
 };

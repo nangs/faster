@@ -1,0 +1,27 @@
+#language-selection {
+  display: flex;
+  flex-flow: row;
+
+}
+
+.lang-block-wrappers {
+  display: inline-block;
+  border: 10px solid transparent;
+}
+
+.lang-block {
+  background: white;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 10px solid transparent;
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,0.14);
+  z-index: 1;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.5);
+  }
+}

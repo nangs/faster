@@ -9,7 +9,6 @@ export const action = createAction(BEGIN_NEW_ROUND);
 
 export const beginNewRound = () => (dispatch, getState) => {
     const { endTime, beginTime, snippet, typos, user } = getState().atom;
-    debugger;
 
     const wpm = getWordsPerMinute(beginTime, endTime, snippet);
     const accuracy = getAccuracy(typos);
@@ -18,11 +17,8 @@ export const beginNewRound = () => (dispatch, getState) => {
     axios.post('/api/saveRound', {
         wpm, accuracy, timestamp, userId: user.id
     }).then(res => {
-        console.log(res.data);
-        debugger;
         dispatch(action());
     }).catch(err => {
-        debugger;
         dispatch(action());
     });
 };

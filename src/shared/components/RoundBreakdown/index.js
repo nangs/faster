@@ -12,7 +12,7 @@ const mapStateToProps = (state) => ({
 });
 
 @connect(mapStateToProps)
-export default class RoundBreakdown extends Component {
+export class RoundBreakdown extends Component {
     render() {
         const { wpm, seriesData, show } = this.props;
         const display = {
