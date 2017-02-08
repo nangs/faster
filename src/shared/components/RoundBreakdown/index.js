@@ -14,15 +14,15 @@ const mapStateToProps = (state) => ({
 @connect(mapStateToProps)
 export default class RoundBreakdown extends Component {
     render() {
-        const { wpm, accuracy, seriesData, show } = this.props;
+        const { wpm, seriesData, show } = this.props;
         const display = {
-            display: show ? "block" : "none"
+            visibilty: show ? 'visible' : 'hidden'
         };
 
         return (
-            <div id="round-breakdown">
+            <div id="round-breakdown" className="center">
                 <Actionbar />
-                <div className="statistics center" style={display}>
+                <div className="statistics" style={display}>
                     <Meter wpm={wpm} />
                     <Pie seriesData={seriesData} />
                 </div>
