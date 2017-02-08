@@ -52,6 +52,18 @@ app.use(passport.session());
 
 const router = express.Router();
 
+router.get('/github', passport.authenticate('github'));
+
+router.get('/github/callback', passport.authenticate('github', {
+        failureRedirect: `/login`,
+        successRedirect: `/round`
+    }),
+    (req, res) => {
+        console.log('i get here? after the callback');
+        res.redirect('/round')
+    }
+);
+
 router.post('/signUp', (req, res, next) => {
     routes.signUp(req, res, next, passport);
 });

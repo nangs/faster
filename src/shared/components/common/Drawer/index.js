@@ -27,8 +27,8 @@ export class Drawer extends Component {
 
     render () {
         const { user, logout } = this.props;
-        const { name } = user;
-        const emailVerified = false;
+        const { name, avatar, verified } = user;
+        const emailVerified = verified;
         return (
             <div id="inner-drawer">
                 <section id="my-info">

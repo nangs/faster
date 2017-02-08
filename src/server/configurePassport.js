@@ -2,12 +2,27 @@ import passport from 'passport';
 import PassportLocal from 'passport-local';
 import { User, Token } from './models';
 import { sendVerificationEmail } from './mailer';
+import * as env from './env';
 
 export default () => {
     const LocalStrategy = PassportLocal.Strategy;
 
     passport.serializeUser((user, done) => {
-        done(null, { id: user._id, name: user.local.username });
+        if(user.github) {
+            done(null, {
+                id: user._id,
+                name: user.github.email,
+                avatar: user.github.avatar,
+                verified: user.github.verified
+            });
+        }else {
+            done(null, {
+                id: user._id,
+                name: user.local.username,
+                avatar: '',
+                verified: user.local.verified
+            });
+        }
     });
 
     passport.deserializeUser((user, done) => {
@@ -66,6 +81,63 @@ export default () => {
                 })
                 .catch(error => done(error, false))
         }));
+
+    const GitHubStrategy = require('passport-github').Strategy;
+
+    passport.use(new GitHubStrategy({
+            clientID: env.githubClientId,
+            clientSecret: env.githubClientSecret,
+            callbackURL: `http://${env.host}:${env.port}/api/github/callback`,
+            profileFields: ['username']
+        },
+        (accessToken, refreshToken, profile, cb) => {
+            const { id, username, photos, emails } = profile;
+            const avatar = photos[0].value;
+            const email = emails[0].value;
+
+            User.find({ '$or': [
+                {'github.id': id}, {'local.email': email }
+            ]}).then(users => {
+                const foundUser = users[0];
+
+                const githubConfig = {
+                    id: id,
+                    username: username,
+                    email: email,
+                    avatar: avatar,
+                    verified: true
+                };
+
+                if(!foundUser) {
+                    const newUser = new User({
+                        local: {
+                            username: username,
+                            password: refreshToken,
+                            email: email,
+                            verified: true
+                        },
+                        github: githubConfig
+                    });
+
+                    newUser.save((err, data) => {
+                        cb(err, data);
+                    })
+                } else {
+                    User.findOneAndUpdate({ _id: foundUser._id },
+                        {
+                            github: githubConfig, local: { verified: true }
+                        }, err => {
+                        if(err)
+                            cb(err, null);
+                        cb(null, foundUser);
+                    });
+
+                }
+            }).catch(err => {
+                cb(err, null);
+            });
+        }
+    ));
     
     return passport;
 }

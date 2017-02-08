@@ -7,6 +7,13 @@ var UserSchema = mongoose.Schema({
         password: String,
         email: String,
         verified: { type: Boolean, default: false }
+    },
+    github: {
+        id: String,
+        username: String,
+        email: String,
+        avatar: String,
+        verified: { type: Boolean, default: false }
     }
 });
 

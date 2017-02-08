@@ -2,7 +2,6 @@ import { Token, User, Round } from './models';
 import { sendResetPasswordEmail, sendVerificationEmail } from './mailer';
 
 export default (req, res) => {
-
     const user = (
         req.session
         && req.session.passport
@@ -173,6 +172,17 @@ const login = (req, res, next, passport) => {
     })(req, res, next);
 };
 
+const githubLogin = (req, res, next, passport) => {
+    passport.authenticate('github', {
+        failureRedirect: `/login`,
+        successRedirect: `/round`,
+        successReturnToOrRedirect: `http://${env.host}:${env.port}/round`
+    },
+    (req, res) => {
+        res.redirect('/round')
+    })
+};
+
 const signUp = (req, res, next, passport) => {
     passport.authenticate('local-signup', (error, user) => {
         if(!user) {
@@ -238,6 +248,7 @@ export const routes = {
     resetPassword,
     verifyEmail,
     login,
+    githubLogin,
     signUp,
     logout,
     userProfile,

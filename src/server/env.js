@@ -6,7 +6,8 @@ const {
     DEV_HOST, DEV_PORT,
     API_HOST, API_PORT,
     MONDO_URI,
-    MAILGUN_API_KEY, MAILGUN_DOMAIN
+    MAILGUN_API_KEY, MAILGUN_DOMAIN,
+    GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET
 } = process.env;
 
 export const isBrowser = process.browser;
@@ -18,6 +19,8 @@ export const devHost = DEV_HOST || DEFAULT_HOST;
 export const devPort = DEV_PORT || 3001;
 export const apiHost = API_HOST || DEFAULT_HOST;
 export const apiPort = API_PORT || 3002;
-export const mongoUri = MONDO_URI || 'mongodb://localhost/imap';
+export const mongoUri = MONDO_URI || 'mongodb://localhost/faster';
 export const mailgunApiKey = MAILGUN_API_KEY;
 export const mailgunDomain = MAILGUN_DOMAIN;
+export const githubClientId = GITHUB_CLIENT_ID;
+export const githubClientSecret = GITHUB_CLIENT_SECRET;
