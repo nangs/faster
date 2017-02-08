@@ -1,7 +1,15 @@
 import React, { Component, PropTypes } from 'react'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { push } from 'react-router-redux';
 import { ValidationIcons } from './ValidationIcons';
 import { isValidEmail } from './formValidation';
 
+
+const mapStateToProps = (state) => ({});
+const mapDispatchToProps = (dispatch) => bindActionCreators({ push }, dispatch);
+
+@connect(mapStateToProps, mapDispatchToProps)
 export class RequestPasswordReset extends Component {
     constructor(){
         super();
@@ -35,7 +43,7 @@ export class RequestPasswordReset extends Component {
     };
 
     loginForm = () => {
-        this.props.changeForm('Login');
+        this.props.push('/login');
     };
 
     render(){

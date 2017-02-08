@@ -1,11 +1,12 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { push } from 'react-router-redux';
 import { Actions } from './../../state';
 import { ValidationIcons } from './ValidationIcons';
 import { isValidEmail, isValidUsername, isValidPassword, passwordsMatch } from './formValidation';
 
-@connect(() => ({}), (dispatch) => bindActionCreators(Actions, dispatch))
+@connect(() => ({}), (dispatch) => bindActionCreators({ ...Actions, push }, dispatch))
 export class SignUp extends Component {
     constructor(){
         super();
@@ -105,11 +106,11 @@ export class SignUp extends Component {
     };
 
     loginForm = () => {
-        this.props.changeForm('Login');
+        this.props.push('/login');
     };
 
     requestPasswordResetForm = () => {
-        this.props.changeForm('RequestPasswordReset');
+        this.props.push('/forgot-password');
     };
 
     render(){

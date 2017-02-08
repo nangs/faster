@@ -1,12 +1,13 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { push } from 'react-router-redux';
 import { Actions } from './../../state';
 import { ValidationIcons } from './ValidationIcons';
 import { isValidEmail, isValidPassword } from './formValidation';
 
 const mapStateToProps = (state) => ({});
-const mapDispatchToProps = (dispatch) => bindActionCreators(Actions, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({ ...Actions, push }, dispatch);
 
 @connect(mapStateToProps, mapDispatchToProps)
 export class Login extends Component {
@@ -67,11 +68,11 @@ export class Login extends Component {
     };
 
     signUpForm = () => {
-        this.props.changeForm('SignUp');
+        this.props.push('/signup');
     };
 
     requestPasswordResetForm = () => {
-        this.props.changeForm('RequestPasswordReset');
+        this.props.push('/forgot-password');
     };
 
     render(){
@@ -124,6 +125,13 @@ export class Login extends Component {
                 </div>
 
                 <button className="button button_wide" onClick={this.handleLogin}>SIGN IN</button>
+
+                <button className="button button_wide github-login">
+                     <a href="/api/github">
+                         <span className="fa fa-github"></span>
+                         <span>GITHUB SIGN IN</span>
+                     </a>
+                </button>
 
                 <br />
                 <div className="message">
