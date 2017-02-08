@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Actions } from './../../state';
 import { Actionbar } from './Actionbar';
+import { Graph } from './Graph';
 
 const mapStateToProps = (state) => ({
     practiceHistory: state.atom.practiceHistory
@@ -30,12 +31,19 @@ export class History extends Component {
             </li>
         ));
 
+        const wpmData = practiceHistory.map(round => parseInt(round.wpm));
+        const accuracyData = practiceHistory.map(round => parseInt(round.accuracy));
+
+        const data = {
+            wpmData, accuracyData
+        };
+
         return (
             <div id="history-container" className="center">
                 <Actionbar />
                 <div className="history">
                     <div id="history-graph">
-                        
+                        <Graph data={data} />
                     </div>
                     <div id="history-stream">
                         <ul>
