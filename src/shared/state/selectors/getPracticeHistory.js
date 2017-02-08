@@ -13,7 +13,7 @@ const matchesFilter = (filter, value) => (
 
 const filteredHistory = createSelector(
     [practiceHistorySelector, languageFilterSelector],
-    (history, filter) => history.filter(round => matchesFilter(filter, round))
+    (history, filter) => history.filter(round => matchesFilter(filter, round)).reverse()
 );
 
 export default createSelector(
