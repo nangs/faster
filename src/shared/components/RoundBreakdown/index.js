@@ -2,20 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Selectors } from './../../state';
 import { Actionbar } from './Actionbar';
-import AccuracyMeter from './AccuracyMeter';
+import Pie from './Pie';
 import Meter from './Meter';
 
 const mapStateToProps = (state) => ({
     wpm: Selectors.getWordsPerMinute(state),
-    accuracy: Selectors.getAccuracy(state),
+    seriesData: Selectors.getAccuracy(state),
     show: state.atom.settings.showStatistics
 });
 
 @connect(mapStateToProps)
 export default class RoundBreakdown extends Component {
     render() {
-        const { wpm, accuracy, show } = this.props;
-        console.log('wpm', wpm);
+        const { wpm, accuracy, seriesData, show } = this.props;
         const display = {
             display: show ? "block" : "none"
         };
@@ -25,7 +24,7 @@ export default class RoundBreakdown extends Component {
                 <Actionbar />
                 <div className="statistics center" style={display}>
                     <Meter wpm={wpm} />
-                    <AccuracyMeter percentage={accuracy} show={show}/>
+                    <Pie seriesData={seriesData} />
                 </div>
             </div>
         )

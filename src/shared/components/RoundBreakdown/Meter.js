@@ -52,7 +52,9 @@ const renderGuage = (wpm) => {
                     useHTML: true
                 }
             }
-        }
+        },
+        exporting: { enabled: false },
+        credits: { enabled: false }
     };
 
     Highcharts.chart('container-speed', Highcharts.merge(gaugeOptions, {
@@ -83,7 +85,6 @@ const renderGuage = (wpm) => {
 
     }));
 };
-
 
 export default class Meter extends Component {
     constructor(props, context) {
