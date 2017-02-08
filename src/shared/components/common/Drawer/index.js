@@ -4,9 +4,20 @@ import { bindActionCreators } from 'redux';
 import { Actions } from './../../../state';
 import { MemberAvatar } from './../Avatar';
 import { CheckMarkIcon } from './../Icons';
+import { push } from 'react-router-redux';
 
-@connect(() => ({}), (dispatch) => bindActionCreators(Actions, dispatch))
+@connect(() => ({}), (dispatch) => bindActionCreators({ ...Actions, push }, dispatch))
 export class Drawer extends Component {
+    constructor(props, context) {
+        super(props, context);
+        this.viewHistory = this.viewHistory.bind(this);
+    }
+
+    viewHistory() {
+        this.props.push('/history');
+    }
+
+
     render () {
         const { user, logout } = this.props;
         const { name } = user;
@@ -26,7 +37,7 @@ export class Drawer extends Component {
                 <section id="menu">
                     <ul>
                         <li><span>Account</span></li>
-                        <li><span>History</span></li>
+                        <li onClick={this.viewHistory}><span>History</span></li>
                         <li onClick={logout}><span>Logout</span></li>
                     </ul>
                 </section>

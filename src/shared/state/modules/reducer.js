@@ -34,7 +34,7 @@ export const DEFAULT_STATE = {
     accuracy: 100,
     language: LANGUAGES[0],
     languages: LANGUAGES,
-    history: []
+    practiceHistory: []
 };
 
 export default (state = DEFAULT_STATE, action = {}) => {
