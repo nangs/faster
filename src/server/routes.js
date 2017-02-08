@@ -19,7 +19,7 @@ export default (req, res) => {
     const markup = `<!doctype html>
         <html>
           <head>
-            <title>iMap</title>
+            <title>Faster</title>
             <link rel="icon" type="image/png" href="profile.png" />
             <link rel="stylesheet" type="text/css" href="styles.css" />
             <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />

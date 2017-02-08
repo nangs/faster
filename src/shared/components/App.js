@@ -1,79 +1,63 @@
 const Menu = require('react-burger-menu').push;
 import React, { Component } from 'react';
+import { push } from 'react-router-redux';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Actions } from './../state';
 import { Drawer } from './common/Drawer';
-import { Round } from './Round';
-import { Login, RequestPasswordReset, ResetPassword, SignUp } from './Auth';
 
 const mapStateToProps = (state) => ({
     auth: state.atom.auth,
     user: state.atom.user
 });
 
-const mapDispatchToProps = (dispatcher) => bindActionCreators(Actions, dispatcher);
+const mapDispatchToProps = (dispatcher) => bindActionCreators({ push }, dispatcher);
 
-class App extends Component {
-    render(){
-        const { auth } = this.props;
-        if(auth === undefined) {
-            return <Loading />
-        }
-        else if(!auth) {
-            return <Authenticate />
-        }
-        else {
-            return <Authenticated {...this.props} />
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
-
-class Loading extends Component {
+@connect(mapStateToProps)
+class MyMenu extends Component {
     render() {
-        return (
-            <div>loading</div>
+        return this.props.auth ? (
+            <Menu pageWrapId="page-id" outerContainerId="page-wrapper-id" right={true}>
+                <Drawer {...this.props} />
+            </Menu>
+        ) : (
+            ''
         )
     }
 }
 
-class Authenticate extends Component {
-    constructor(props, context) {
-        super(props, context);
-        this.state = {currentForm: 'Login'}
-    }
+@connect(mapStateToProps, mapDispatchToProps)
+export class App extends Component {
+    componentDidMount() {
+        const { auth, location, push } = this.props;
+        const pathname = location.pathname;
 
-    changeForm = (formName) => {
-        this.setState({currentForm: formName});
-    };
+        const authenticatedRoutes = [
+            'language-selection', 'round', 'history', 'profile'
+        ];
+
+        const unathenticatedRoutes = [
+            'login', 'signup', 'forgot-password', 'reset-password'
+        ];
+
+        if(auth) {
+            if(unathenticatedRoutes.includes(pathname)) {
+                push('/round');
+            }
+        } else {
+            if(authenticatedRoutes.inlcudes(pathname)) {
+                push('/login');
+            }
+        }
+    }
 
     render() {
-        const map = {
-            Login: <Login changeForm={this.changeForm} />,
-            RequestPasswordReset: <RequestPasswordReset changeForm={this.changeForm} />,
-            ResetPassword: <ResetPassword changeForm={this.changeForm} />,
-            SignUp: <SignUp changeForm={this.changeForm} />
-        };
-
-        const currentForm = map[this.state.currentForm];
-
-        return currentForm;
-    }
-}
-
-class Authenticated extends Component {
-    render () {
         return (
             <div id="page-wrapper-id">
-                <Menu pageWrapId="page-id" outerContainerId="page-wrapper-id" right={true}>
-                    <Drawer {...this.props} />
-                </Menu>
+                <MyMenu />
                 <div id="page-id">
-                    <Round />
+                    {this.props.children}
                 </div>
             </div>
-        );
+        )
     }
 }

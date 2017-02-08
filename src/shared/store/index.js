@@ -2,8 +2,8 @@ import { createStore, compose } from 'redux';
 import createMiddlewares from './createMiddlewares';
 import rootReducer from './rootReducer';
 
-export default ({ initialState }) => {
-    const enhancers = [createMiddlewares()].concat([
+export default ({ initialState, history }) => {
+    const enhancers = [createMiddlewares(history)].concat([
         typeof window === 'object' && typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : (f) => f
     ]);
     const store = createStore(rootReducer, initialState, compose(...enhancers));

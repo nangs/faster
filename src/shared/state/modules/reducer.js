@@ -33,7 +33,8 @@ export const DEFAULT_STATE = {
     wpm: 0,
     accuracy: 100,
     language: LANGUAGES[0],
-    languages: LANGUAGES
+    languages: LANGUAGES,
+    history: []
 };
 
 export default (state = DEFAULT_STATE, action = {}) => {

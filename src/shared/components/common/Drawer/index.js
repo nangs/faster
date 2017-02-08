@@ -34,3 +34,9 @@ export class Drawer extends Component {
         );
     }
 }
+
+Drawer.defaultProps = {
+    user: {
+        name: 'Signup'
+    }
+};
