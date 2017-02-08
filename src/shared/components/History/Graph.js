@@ -21,34 +21,37 @@ const renderGraph = (wpmData, accuracyData) => {
         yAxis: [
             {
                 labels: {
-                    format: '{value}',
+                    format: '{value}%',
                     style: {
-                        color: 'rgb(124, 181, 236)'
+                        color: '#31363e'
                     }
                 },
+                title: {
+                    text: 'Accuracy',
+                    style: {
+                        color: '#31363e'
+                    }
+                },
+                opposite: true,
+                min: 0,
+                max: 100
+
+            }, {
+                gridLineWidth: 0,
                 title: {
                     text: 'Words Per Minute',
                     style: {
                         color: 'rgb(124, 181, 236)'
                     }
                 },
-                opposite: true
-
-            }, { // Secondary yAxis
-                gridLineWidth: 0,
-                title: {
-                    text: 'Accuracy',
+                labels: {
+                    format: '{value}',
                     style: {
-                        color: Highcharts.getOptions().colors[0]
+                        color: 'rgb(124, 181, 236)'
                     }
                 },
-                labels: {
-                    format: '{value}%',
-                    style: {
-                        color: Highcharts.getOptions().colors[0]
-                    }
-                }
-
+                min: 0,
+                max: 80
             }
         ],
         legend: {
@@ -59,12 +62,14 @@ const renderGraph = (wpmData, accuracyData) => {
         },
         series: [{
             name: 'WPM',
+            color: 'rgb(124, 181, 236)',
             data: wpmData,
             tooltip: {
                 valueSuffix: ''
             }
         }, {
             name: 'Accuracy',
+            color: '#31363e',
             data: accuracyData,
             tooltip: {
                 valueSuffix: '%'
