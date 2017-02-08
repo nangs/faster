@@ -12,19 +12,25 @@ export class Drawer extends Component {
         const { name } = user;
         const emailVerified = false;
         return (
-            <section>
-                <header><h2>Menu</h2></header>
-                <div className="member">
-                    <MemberAvatar />
-                    <p>
-                        {emailVerified ? <CheckMarkIcon /> : ''}
-                        {name}
-                    </p>
-                </div>
-                <div>
-                    <button className="button logout" onClick={logout}>Logout</button>
-                </div>
-            </section>
+            <div id="inner-drawer">
+                <section id="my-info">
+                    <header><h2>Faster</h2></header>
+                    <div className="member">
+                        {/*<MemberAvatar />*/}
+                        <p>
+                            {emailVerified ? <CheckMarkIcon /> : ''}
+                            {name}
+                        </p>
+                    </div>
+                </section>
+                <section id="menu">
+                    <ul>
+                        <li><span>Account</span></li>
+                        <li><span>History</span></li>
+                        <li onClick={logout}><span>Logout</span></li>
+                    </ul>
+                </section>
+            </div>
         );
     }
 }
