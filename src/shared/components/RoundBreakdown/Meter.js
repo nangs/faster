@@ -29,9 +29,9 @@ const renderGuage = (wpm) => {
         // the value axis
         yAxis: {
             stops: [
-                [0.1, '#55BF3B'], // green
-                [0.5, '#DDDF0D'], // yellow
-                [0.9, '#DF5353'] // red
+                [0.1, '#DF5353'],
+                [0.5, '#DDDF0D'],
+                [0.9, '#55BF3B']
             ],
             lineWidth: 0,
             minorTickInterval: null,
@@ -91,10 +91,11 @@ export default class Meter extends Component {
         this.state = { mountNode: null };
     }
 
-    componentDidMount() {
-        renderGuage(this.props.wpm);
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.wpm > 0) {
+            renderGuage(nextProps.wpm);
+        }
     }
-
 
     render() {
         const styles = {

@@ -8,10 +8,12 @@ import { getIndex } from './../utils';
 const START_ROUND = 'START_ROUND';
 const TOGGLE_SHIFT = 'TOGGLE_SHIFT';
 const RECORD_TYPO_TYPE = 'RECORD_TYPO_TYPE';
+const SET_END_TIME = 'SET_END_TIME';
 
 const startRound = createAction(START_ROUND, language => ({ language }));
 const setShift = createAction(TOGGLE_SHIFT, isShift => ({ isShift }));
 const recordTypoType = createAction(RECORD_TYPO_TYPE, (index, type) => ({ index, type }));
+const setEndTime = createAction(SET_END_TIME, time => ({ time }));
 
 export const handleKeypress = (keyCode, shiftKey) => (dispatch, getState) => {
     const { hasStarted, snippet, isShift, language, typos } = getState().atom;
@@ -33,6 +35,9 @@ export const handleKeypress = (keyCode, shiftKey) => (dispatch, getState) => {
         } else {
             const typoType = key === snippet[index] ? CORRECT : INCORRECT;
             dispatch(recordTypoType(index, typoType));
+            if(index === snippet.length - 1) {
+                dispatch(setEndTime(new Date().getTime()))
+            }
         }
         dispatch(setShift(false));
     }
@@ -75,14 +80,16 @@ const handleRecordTypoType = (state, action) => {
     };
 };
 
+const handleSetEndTime = (state, action) => {
+    return {
+        ...state,
+        endTime: action.time
+    }
+};
+
 export default {
     [START_ROUND]: handleStartRound,
     [TOGGLE_SHIFT]: handleSetShift,
-    [RECORD_TYPO_TYPE]: handleRecordTypoType
+    [RECORD_TYPO_TYPE]: handleRecordTypoType,
+    [SET_END_TIME]: handleSetEndTime
 }
-
-const getWPM = (beginTime, index) => {
-    let totalTime = (new Date).getTime() - beginTime;
-    if(totalTime === 0) return 0;
-    return Math.round(10000 * index / (5 * totalTime));
-};
