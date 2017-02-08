@@ -2,13 +2,15 @@ import getProfile from './getProfile';
 import login from './login';
 import logout from './logout';
 import handleKeypress from './handleKeypress';
+import beginNewRound from './beginNewRound';
 import { LANGUAGES } from './../../constants/Languages';
 
 const handlers = [
     getProfile,
     login,
     logout,
-    handleKeypress
+    handleKeypress,
+    beginNewRound
 ].reduce((output, handler) => Object.assign(output, handler), {});
 
 export const DEFAULT_STATE = {
