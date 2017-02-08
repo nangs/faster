@@ -23,13 +23,13 @@ const renderGraph = (wpmData, accuracyData) => {
                 labels: {
                     format: '{value}',
                     style: {
-                        color: Highcharts.getOptions().colors[2]
+                        color: 'rgb(124, 181, 236)'
                     }
                 },
                 title: {
                     text: 'Words Per Minute',
                     style: {
-                        color: Highcharts.getOptions().colors[2]
+                        color: 'rgb(124, 181, 236)'
                     }
                 },
                 opposite: true
