@@ -30,7 +30,7 @@ class MyMenu extends Component {
                 <Drawer {...this.props} closeDrawer={this.closeDrawer} />
             </Menu>
         ) : (
-            ''
+            <div></div>
         )
     }
 }
@@ -54,7 +54,7 @@ export class App extends Component {
                 push('/round');
             }
         } else {
-            if(authenticatedRoutes.inlcudes(pathname)) {
+            if(authenticatedRoutes.includes(pathname)) {
                 push('/login');
             }
         }

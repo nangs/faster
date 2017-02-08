@@ -1,5 +1,6 @@
 import { createAction } from 'redux-actions';
 import axios from 'axios';
+import { push } from 'react-router-redux';
 
 const LOGIN = 'LOGIN';
 
@@ -10,6 +11,7 @@ export const login = (credentials) => (dispatch) => {
         .then(response => {
             const user = response.data;
             dispatch(success(user));
+            dispatch(push('/round'));
         })
         .catch(error => {
             console.log('login failure', error);
