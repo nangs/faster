@@ -5,6 +5,7 @@ import handleKeypress from './handleKeypress';
 import beginNewRound from './beginNewRound';
 import getHistory from './getHistory';
 import setLanguage from './setLanguage';
+import selectLanguageFilter from './selectLanguageFilter';
 import { LANGUAGES } from './../../constants/Languages';
 
 const handlers = [
@@ -14,7 +15,8 @@ const handlers = [
     handleKeypress,
     beginNewRound,
     getHistory,
-    setLanguage
+    setLanguage,
+    selectLanguageFilter
 ].reduce((output, handler) => Object.assign(output, handler), {});
 
 export const DEFAULT_STATE = {
@@ -36,6 +38,9 @@ export const DEFAULT_STATE = {
     accuracy: 100,
     language: null,
     languages: LANGUAGES,
+    languageFilter: {
+        text: ''
+    },
     practiceHistory: []
 };
 

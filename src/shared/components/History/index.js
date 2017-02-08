@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Actions } from './../../state';
+import { Actions, Selectors } from './../../state';
 import { Actionbar } from './Actionbar';
 import { Graph } from './Graph';
 
 const mapStateToProps = (state) => ({
-    practiceHistory: state.atom.practiceHistory
+    practiceHistory: Selectors.getPracticeHistory(state)
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(Actions, dispatch);
@@ -20,14 +20,35 @@ export class History extends Component {
     render() {
         const { practiceHistory } = this.props;
 
-        const stream = practiceHistory
-            .map(round => Object.assign({}, round, {
-                formattedTimeStamp: new Date(parseInt(round.timestamp)).toISOString().split('T')[0].toString()
-            }))
-            .map((round, i) => (
+        const stream = practiceHistory.map((round, i) => (
             <li className="activity" key={i}>
-                <div>Round completed at {round.formattedTimeStamp}</div>
-                <div>with {round.accuracy}% accuracy and at {round.wpm} words per minute.</div>
+                <div className="activity-card">
+                    <div className="stats">
+                        <div className="tile">
+                            <div className="fa fa-bullseye">
+                                <div className="label">Accuracy</div>
+                            </div>
+                            <div>
+                                <span className="value">{round.accuracy}</span>
+                                <span className="unit">%</span>
+                            </div>
+                        </div>
+                        <div className="tile">
+                            <div className="fa fa-tachometer">
+                                <div className="label">Speed</div>
+                            </div>
+                            <div>
+                                <span className="value">{round.wpm}</span>
+                                <span className="unit">WPM</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="footer">
+                        <div>
+                            {round.formattedTimeStamp}
+                        </div>
+                    </div>
+                </div>
             </li>
         ));
 

@@ -1,8 +1,10 @@
+@import url(https://fonts.googleapis.com/css?family=Puritan:400,700|Oswald);
+
 #history-container {
   background: white;
 
   .toolbar {
-    padding: 0 .5em;
+    padding-left: .5em;
   }
 }
 
@@ -14,12 +16,13 @@
   flex-flow: row;
 }
 
+@graphWidth: ~"100% - 300px";
 #history-graph {
-  width: 70%;
+  width: calc(@graphWidth);
 }
 
 #history-stream {
-  width: 30%;
+  width: 300px;
   border-left: 1px solid lightgray;
 
   ul {
@@ -29,5 +32,118 @@
     li {
       padding: 10px;
     }
+  }
+}
+
+.language-lookup {
+  .lookup {
+    .selected {
+      background: #6d09a8;
+    }
+  }
+
+  .results-list {
+    max-height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .result {
+
+  }
+}
+
+.language-lookup{
+  color: black;
+  height: inherit;
+  position: relative;
+
+  input {
+    color: #ffffff;
+    background-color: rgba(255,255,255,.2);
+    border: 0;
+    height: 100%;
+    width: 300px;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.activity {
+
+  .activity-card {
+    border: 1px solid lightgray;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+    z-index: 1;
+
+    &:hover {
+      box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  .stats {
+    display: flex;
+    flex-flow: row;
+    width: 100%;
+
+    & .tile:first-child {
+      border-right: 1px solid lightgray;
+    }
+
+    .tile {
+      flex: 1;
+      text-align: center;
+
+      color: black;
+
+      height: 100px;
+      align-items: center;
+      display: flex;
+      flex-flow: column;
+      justify-content: space-around;
+
+      .fa {
+        font-size: 2em;
+
+        &.fa-bullseye:before {
+          color: lightcoral;
+        }
+
+        &.fa-tachometer:before {
+          color: lightgreen;
+        }
+
+        .label {
+          font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+          font-weight: 300;
+          text-transform: uppercase;
+          font-size: .4em;
+          padding-top: 10px;
+          color: #4d4d4d;
+        }
+
+      }
+
+      .value {
+        font-size: 2em;
+        font-family: 'Oswald';
+        color: #4d4d4d;
+      }
+
+      .unit {
+        color: #4d4d4d;
+        font-weight: 100;
+      }
+    }
+  }
+  .footer {
+    padding: 5px;
+    display: flex;
+    border-top: 1px solid lightgray;
+    justify-content: flex-end;
+    font-size: .75em;
+    font-weight: 200;
   }
 }

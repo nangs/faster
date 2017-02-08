@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Toolbar, ToolbarGroup } from './../common/Toolbar';
+import { LanguageLookup } from './LanguageLookup';
 import { Actions } from './../../state';
 
 @connect(() => ({}), dispatch => bindActionCreators(Actions, dispatch))
@@ -12,6 +13,11 @@ export class Actionbar extends React.Component {
                 <Toolbar className="nav-toolbar">
                     <ToolbarGroup>
                         <span>History</span>
+                    </ToolbarGroup>
+                    <ToolbarGroup>
+                        <div className="language-lookup">
+                            <LanguageLookup {...this.props} />
+                        </div>
                     </ToolbarGroup>
                 </Toolbar>
             </header>

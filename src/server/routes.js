@@ -208,9 +208,9 @@ const userProfile = (req, res) => {
 };
 
 const saveRound = (req, res) => {
-    const { accuracy, wpm, timestamp, userId } = req.body;
+    const { accuracy, wpm, language, snippet, typos, timestamp, userId } = req.body;
     const round = new Round({
-        accuracy, wpm, timestamp, userId
+        accuracy, wpm, language, snippet, typos, timestamp, userId
     });
 
     round.save((err, data) => {
