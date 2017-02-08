@@ -14,10 +14,20 @@ const mapDispatchToProps = (dispatcher) => bindActionCreators({ push }, dispatch
 
 @connect(mapStateToProps)
 class MyMenu extends Component {
+    constructor(props, context) {
+        super(props, context);
+        this.closeDrawer = this.closeDrawer.bind(this);
+        this.state = { isOpen: false };
+    }
+
+    closeDrawer() {
+        this.setState({ isOpen: false });
+    }
+
     render() {
         return this.props.auth ? (
-            <Menu pageWrapId="page-id" outerContainerId="page-wrapper-id" right={true}>
-                <Drawer {...this.props} />
+            <Menu pageWrapId="page-id" outerContainerId="page-wrapper-id" isOpen={this.state.isOpen} right={true}>
+                <Drawer {...this.props} closeDrawer={this.closeDrawer} />
             </Menu>
         ) : (
             ''
