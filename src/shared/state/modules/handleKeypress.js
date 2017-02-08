@@ -86,12 +86,3 @@ const getWPM = (beginTime, index) => {
     if(totalTime === 0) return 0;
     return Math.round(10000 * index / (5 * totalTime));
 };
-
-const getAccuracy = (typos) => {
-    let occurences = _.countBy(typos);
-    let c = occurences[CORRECT] || 0;
-    let i = occurences[INCORRECT] || 0;
-    if(i === 0 && c === 0) return 0;
-    let percentage = 100 * (c / (c + i));
-    return Math.round(percentage);
-};
