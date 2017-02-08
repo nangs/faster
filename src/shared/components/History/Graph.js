@@ -18,28 +18,57 @@ const renderGraph = (wpmData, accuracyData) => {
                 text: 'Time'
             }
         },
-        yAxis: {
-            plotLines: [{
-                value: 0,
-                width: 1,
-                color: '#808080'
-            }]
-        },
-        tooltip: {
-            valueSuffix: ''
-        },
+        yAxis: [
+            {
+                labels: {
+                    format: '{value}',
+                    style: {
+                        color: Highcharts.getOptions().colors[2]
+                    }
+                },
+                title: {
+                    text: 'Words Per Minute',
+                    style: {
+                        color: Highcharts.getOptions().colors[2]
+                    }
+                },
+                opposite: true
+
+            }, { // Secondary yAxis
+                gridLineWidth: 0,
+                title: {
+                    text: 'Accuracy',
+                    style: {
+                        color: Highcharts.getOptions().colors[0]
+                    }
+                },
+                labels: {
+                    format: '{value}%',
+                    style: {
+                        color: Highcharts.getOptions().colors[0]
+                    }
+                }
+
+            }
+        ],
         legend: {
             layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'middle',
+            align: 'center',
+            verticalAlign: 'bottom',
             borderWidth: 0
         },
         series: [{
             name: 'WPM',
-            data: wpmData
+            data: wpmData,
+            tooltip: {
+                valueSuffix: ''
+            }
         }, {
             name: 'Accuracy',
-            data: accuracyData
+            data: accuracyData,
+            tooltip: {
+                valueSuffix: '%'
+            }
         }]
     });
 };
