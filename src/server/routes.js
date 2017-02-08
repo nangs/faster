@@ -1,4 +1,4 @@
-import { Token, User } from './models';
+import { Token, User, Round } from './models';
 import { sendResetPasswordEmail, sendVerificationEmail } from './mailer';
 
 export default (req, res) => {
@@ -207,6 +207,31 @@ const userProfile = (req, res) => {
         .catch(error => res.status(500).send(error))
 };
 
+const saveRound = (req, res) => {
+    const { accuracy, wpm, timestamp, userId } = req.body;
+    const round = new Round({
+        accuracy, wpm, timestamp, userId
+    });
+
+    round.save((err, data) => {
+        if(err) {
+            return res.status(500).send(err);
+        }
+        else {
+            return res.status(200).send(data);
+        }
+    });
+};
+
+const getHistory = (req, res) => {
+    const { userId } = req.body;
+    Round.find({ userId }).then(history => {
+        return res.status(200).send(history)
+    }).catch(err => {
+        return res.status(500).send(err);
+    })
+};
+
 export const routes = {
     forgotPassword,
     resendVerificationEmail,
@@ -215,5 +240,7 @@ export const routes = {
     login,
     signUp,
     logout,
-    userProfile
+    userProfile,
+    saveRound,
+    getHistory
 };

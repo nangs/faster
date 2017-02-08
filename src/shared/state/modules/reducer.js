@@ -3,6 +3,7 @@ import login from './login';
 import logout from './logout';
 import handleKeypress from './handleKeypress';
 import beginNewRound from './beginNewRound';
+import getHistory from './getHistory';
 import { LANGUAGES } from './../../constants/Languages';
 
 const handlers = [
@@ -10,7 +11,8 @@ const handlers = [
     login,
     logout,
     handleKeypress,
-    beginNewRound
+    beginNewRound,
+    getHistory
 ].reduce((output, handler) => Object.assign(output, handler), {});
 
 export const DEFAULT_STATE = {
