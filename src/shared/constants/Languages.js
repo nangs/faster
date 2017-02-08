@@ -9,12 +9,18 @@ const javascriptSnippets = [
     'document.querySelector(\'.start\').addEventListener(\'click\', start);'
 ];
 
+const csharpSnippets = [
+    'public virtual IGroupingStrategy GetGroupingStrategy(string name)'
+];
+
 export const LANGUAGES = [
   'Java',
-  'JavaScript'
+  'JavaScript',
+  'C#'
 ];
 
 export const SNIPPETS = {
     Java : javaSnippets,
-    JavaScript : javascriptSnippets
+    JavaScript : javascriptSnippets,
+    'C#': csharpSnippets
 };
