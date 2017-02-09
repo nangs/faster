@@ -125,7 +125,7 @@ export default () => {
                 } else {
                     User.findOneAndUpdate({ _id: foundUser._id },
                         {
-                            github: githubConfig, local: { verified: true }
+                            github: githubConfig, 'local.verified': true
                         }, err => {
                         if(err)
                             cb(err, null);
