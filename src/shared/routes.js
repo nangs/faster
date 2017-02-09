@@ -3,7 +3,7 @@ import { Route, IndexRoute, browserHistory } from 'react-router';
 
 import { App } from './components/App';
 import { NotFound } from './components/NotFound';
-import { Login, SignUp, RequestPasswordReset, ResetPassword } from './components/Auth';
+import { Login, SignUp, RequestPasswordReset, ResetPassword, VerifyEmail } from './components/Auth';
 import { History } from './components/History';
 
 import { Practice } from './components/Practice';
@@ -14,6 +14,7 @@ const routes = (
         <IndexRoute component={Login} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
+        <Route path="/verify/:id" component={VerifyEmail} />
         <Route path="/forgot-password" component={RequestPasswordReset} />
         <Route path="/reset-password" component={ResetPassword} />
         <Route path="/language-selection" component={Practice} />

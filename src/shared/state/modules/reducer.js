@@ -1,5 +1,5 @@
-import getProfile from './getProfile';
 import login from './login';
+import verifyEmail from './verifyEmail';
 import signup from './signup';
 import logout from './logout';
 import handleKeypress from './handleKeypress';
@@ -10,8 +10,8 @@ import selectLanguageFilter from './selectLanguageFilter';
 import { LANGUAGES } from './../../constants/Languages';
 
 const handlers = [
-    getProfile,
     login,
+    verifyEmail,
     signup,
     logout,
     handleKeypress,

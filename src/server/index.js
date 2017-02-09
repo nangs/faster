@@ -71,7 +71,7 @@ router.post('/login', (req, res, next) => {
 });
 router.get('/logout', routes.logout);
 router.post('/verifyEmail', routes.verifyEmail);
-router.post('/resendVerificationEmail', routes.resendVerificationEmail);
+router.post('/sendVerificationEmail', routes.resendVerificationEmail);
 router.post('/forgotPassword', routes.forgotPassword);
 router.post('/resetPassword', routes.resetPassword);
 router.post('/userProfile', routes.userProfile);

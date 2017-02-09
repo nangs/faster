@@ -1,4 +1,3 @@
-export { getProfile } from './getProfile';
 export { login } from './login';
 export { logout } from './logout';
 export { signup } from './signup';
@@ -8,3 +7,5 @@ export { getHistory } from './getHistory';
 export { setLanguage } from './setLanguage';
 export { selectLanguageFilter } from './selectLanguageFilter';
 export { resetPassword } from './resetPassword';
+export { verifyEmail } from './verifyEmail';
+export { sendEmailVerification } from './sendEmailVerification';

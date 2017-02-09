@@ -69,31 +69,19 @@ const forgotPassword = (req, res) => {
 };
 
 const resendVerificationEmail = (req, res) => {
-
-    const handleFoundUser = (user) => {
-        sendVerificationEmail(user.local.email, token.token, emailErr => {
-            if(emailErr) {
-                return res.status(500).send();
-            }
-            return res.json({ sent: true });
-        });
-    };
-
-    const handleFoundToken = (token) => {
-        User.findById(userId, (userErr, user) => {
-            if(userErr || user === null) {
-                return res.status(500).send();
-            }
-            handleFoundUser(user);
-        });
-    };
-
     const userId = req.body.userId;
-    Token.findOne({ userId: userId, type: 'USER' }, (err, token) => {
-        if(err || token === null) {
-            return res.status(500).send();
-        }
-        handleFoundToken(token);
+    console.log('body', userId);
+
+    User.findById(userId).then(user => {
+        console.log('found user', user);
+        Token.new(userId, 'USER')
+            .then(token => {
+                console.log('crated token', token);
+                sendVerificationEmail(user.local.email, token.token)
+                    .then(() => res.status(200).send())
+                    .catch(emailError => res.status(500).send(emailError));
+            })
+            .catch(tokenError => res.status(500).send(tokenError));
     });
 };
 
