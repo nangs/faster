@@ -211,8 +211,7 @@ export class SignUp extends Component {
 
                 <br />
                 <div className="message">
-                    <span onClick={this.loginForm}>Have an account, Log In</span>
-                    <span> | </span>
+                    <span onClick={this.loginForm}>Log In</span>
                     <span onClick={this.requestPasswordResetForm}>Forgot Password</span>
                 </div>
             </div>

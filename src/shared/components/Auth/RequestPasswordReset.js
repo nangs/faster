@@ -75,7 +75,7 @@ export class RequestPasswordReset extends Component {
 
                 <br />
                 <div className="message">
-                    <span onClick={this.loginForm}>Oh wait I remember my password, let me Login instead.</span>
+                    <span onClick={this.loginForm}>Login.</span>
                 </div>
             </div>
         )
