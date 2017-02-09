@@ -1,12 +1,14 @@
 import { Token, User, Round } from './models';
 import { sendResetPasswordEmail, sendVerificationEmail } from './mailer';
 
+const getUserSession = req => (
+    req.session
+    && req.session.passport
+    && req.session.passport.user
+) ? req.session.passport.user : null;
+
 export default (req, res) => {
-    const user = (
-        req.session
-        && req.session.passport
-        && req.session.passport.user
-    ) ? req.session.passport.user : null;
+    const user = getUserSession(req);
 
     const initialState = {
         atom: {
@@ -121,12 +123,24 @@ const resetPassword = (req, res) => {
         });
     };
 
-    Token.findOne({ token: req.body.token, type: 'RESET' }, (err, token) => {
-        if(err || token === null) {
-            return res.status(500).send();
-        }
-        handleFoundToken(token);
-    });
+    const user = getUserSession(req);
+    const loggedInUserWantsToChangePassword = !!user;
+
+    if(loggedInUserWantsToChangePassword) {
+        User.findById(user.id, (userErr, user) => {
+            if(userErr || user === null) {
+                return res.status(500).send();
+            }
+            handleFoundUser(user);
+        });
+    } else {
+        Token.findOne({token: req.body.token, type: 'RESET'}, (err, token) => {
+            if (err || token === null) {
+                return res.status(500).send();
+            }
+            handleFoundToken(token);
+        });
+    }
 };
 
 const verifyEmail = (req, res) => {

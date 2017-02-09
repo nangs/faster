@@ -1,16 +1,20 @@
 import React, { Component, PropTypes } from 'react'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Actions } from './../../state';
 import { ValidationIcons } from './ValidationIcons';
 import { isValidPassword, passwordsMatch } from './formValidation';
 
+@connect(() => ({}), (dispatch) => bindActionCreators({ ...Actions }, dispatch))
 export class ResetPassword extends Component {
-    constructor(){
-        super();
+    constructor(props, context){
+        super(props, context);
         this.state = {
             loading:false,
             password: '',
             isPasswordValid: true,
             isPasswordFocused: false,
-            passwordConfirm: '',
+            confirmPassword: '',
             isPasswordConfirmValid: true,
             isPasswordConfirmFocused: false
         };
@@ -38,7 +42,7 @@ export class ResetPassword extends Component {
     onPasswordConfirmChange(event) {
         const value = event.target.value;
         this.setState({
-            passwordConfirm: value,
+            confirmPassword: value,
             isPasswordConfirmValid: passwordsMatch(this.state.password, value)
         });
     }
@@ -52,11 +56,10 @@ export class ResetPassword extends Component {
     }
 
     handleChangePassword = () => {
-        const { email, oldPassword, newPassword } = this.state;
+        const { password, confirmPassword } = this.state;
 
-        const credentials = { email, oldPassword, newPassword };
-
-        //this.props.firebase.changePassword(credentials);
+        const credentials = { password, confirmPassword };
+        this.props.resetPassword(credentials);
     };
 
     render(){
@@ -68,7 +71,7 @@ export class ResetPassword extends Component {
         const passwordErrorClassNames = `error_container ${this.state.isPasswordValid ? 'invisible' : 'visible'}`;
 
 
-        const isPasswordConfirmEmpty = this.state.passwordConfirm ? 'input_hasValue' : 'input_empty';
+        const isPasswordConfirmEmpty = this.state.confirmPassword ? 'input_hasValue' : 'input_empty';
         const isPasswordConfirmValid = this.state.isPasswordConfirmValid ? 'input_valid' : 'input_invalid';
         const isPasswordConfirmError = this.state.isPasswordConfirmValid ? '' : 'input_error';
         const isPasswordConfirmFocused = this.state.isPasswordConfirmFocused ? 'input_focused' : 'input_unfocused';
@@ -93,12 +96,12 @@ export class ResetPassword extends Component {
                 </div>
 
                 <div className={passwordConfirmClassNames}>
-                    <label className="input_label" htmlFor="passwordConfirm">
+                    <label className="input_label" htmlFor="confirmPassword">
                         <span className="label_text">Confirm Password</span>
                     </label>
                     <input type="password"
                            className="input"
-                           id="passwordConfirm"
+                           id="confirmPassword"
                            onChange={this.onPasswordConfirmChange}
                            onChange={this.onPasswordConfirmChange}
                            onFocus={this.onPasswordConfirmFocus}

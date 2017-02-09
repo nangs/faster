@@ -7,3 +7,4 @@ export { beginNewRound } from './beginNewRound';
 export { getHistory } from './getHistory';
 export { setLanguage } from './setLanguage';
 export { selectLanguageFilter } from './selectLanguageFilter';
+export { resetPassword } from './resetPassword';
