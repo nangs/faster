@@ -12,6 +12,7 @@ export class Drawer extends Component {
         super(props, context);
         this.viewHistory = this.viewHistory.bind(this);
         this.viewPractice = this.viewPractice.bind(this);
+        this.viewProfile = this.viewProfile.bind(this);
     }
 
     viewHistory() {
@@ -21,6 +22,11 @@ export class Drawer extends Component {
 
     viewPractice() {
         this.props.push('/round');
+        this.props.closeDrawer();
+    }
+
+    viewProfile() {
+        this.props.push('/profile');
         this.props.closeDrawer();
     }
 
@@ -34,7 +40,6 @@ export class Drawer extends Component {
                 <section id="my-info">
                     <header><h2>Faster</h2></header>
                     <div className="member">
-                        {/*<MemberAvatar />*/}
                         <p>
                             {emailVerified ? <CheckMarkIcon /> : ''}
                             {name}
@@ -43,7 +48,7 @@ export class Drawer extends Component {
                 </section>
                 <section id="menu">
                     <ul>
-                        <li><span>Account</span></li>
+                        <li onClick={this.viewProfile}><span>Account</span></li>
                         <li onClick={this.viewPractice}><span>Practice</span></li>
                         <li onClick={this.viewHistory}><span>History</span></li>
                         <li onClick={logout}><span>Logout</span></li>

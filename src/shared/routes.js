@@ -7,8 +7,7 @@ import { Login, SignUp, RequestPasswordReset, ResetPassword } from './components
 import { History } from './components/History';
 
 import { Practice } from './components/Practice';
-//import { Round } from './components/Round';
-//import { LanguageSelection } from './components/LanguageSelection';
+import { Profile } from './components/Profile';
 
 const routes = (
     <Route history={browserHistory} path="/" component={App}>
@@ -20,6 +19,7 @@ const routes = (
         <Route path="/language-selection" component={Practice} />
         <Route path="/round" component={Practice} />
         <Route path="/history" component={History} />
+        <Route path="/profile" component={Profile} />
         <Route path={'*'} component={NotFound} status={404} />
     </Route>
 );
