@@ -59,7 +59,6 @@ router.get('/github/callback', passport.authenticate('github', {
         successRedirect: `/round`
     }),
     (req, res) => {
-        console.log('i get here? after the callback');
         res.redirect('/round')
     }
 );

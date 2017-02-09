@@ -51,9 +51,7 @@ export default () => {
                             Token.new(newUser._id, 'USER')
                                 .then(token => {
                                     sendVerificationEmail(newUser.local.email, token.token)
-                                        .then(() => {
-                                            done(null, newUser);
-                                        })
+                                        .then(() => done(null, newUser))
                                         .catch(emailError => done(emailError, false));
                                 })
                                 .catch(tokenError => done(tokenError, false))

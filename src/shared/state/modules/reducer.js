@@ -1,5 +1,6 @@
 import getProfile from './getProfile';
 import login from './login';
+import signup from './signup';
 import logout from './logout';
 import handleKeypress from './handleKeypress';
 import beginNewRound from './beginNewRound';
@@ -11,6 +12,7 @@ import { LANGUAGES } from './../../constants/Languages';
 const handlers = [
     getProfile,
     login,
+    signup,
     logout,
     handleKeypress,
     beginNewRound,

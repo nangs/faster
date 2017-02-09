@@ -1,50 +1,54 @@
-import { host, port, mailgunApiKey, mailgunDomain } from './env';
 import Mailgun from 'mailgun-js';
+import * as env from './env';
+const { host, port, mailgunApiKey, mailgunDomain, nodeEnv } = env;
 
 const mailgun = new Mailgun({
     apiKey: mailgunApiKey,
     domain: mailgunDomain
 });
 
-export function sendEmail(data, fn) {
+export const sendEmail = (data) => new Promise((resolve, reject) => {
     if(!data.from) {
-        return fn(new Error('Email address required'));
+        reject(new Error('Email address required'));
     }
     if(!data.to) {
-        return fn(new Error('Email address required'));
+        reject(new Error('Email address required'));
     }
     if(!data.subject) {
-        return fn(new Error('Must contain a subject'));
+        reject(new Error('Must contain a subject'));
     }
     if(!data.html) {
-        return fn(new Error('Must contain a message'));
+        reject(new Error('Must contain a message'));
     }
-    if(env.nodeEnv === 'test') {
-        return fn(null, 'OK');
+    if(nodeEnv === 'test') {
+        reject(null);
     }
 
-    return mailgun.messages().send();
-}
+    mailgun.messages().send(data, (err, body) => {
+        if(err) reject(err);
+        resolve(body);
+    });
+});
 
-export function sendVerificationEmail(email, token, fn) {
+export function sendVerificationEmail(email, token) {
     const data = {
-        from: 'tripletriad@gmail.com',
+        from: 'faster@gmail.com',
         to: email,
-        subject: 'Play Triple Triad',
+        subject: 'Practice Coding with Faster',
         html: `
             Verify your account with the following link:
             http://${host}:${port}/verify/${token}
-            Welcome to Triple Triad were you can play with your friends.
+            Welcome to Faster were you and other coders can practice typing!
         `
     };
     return sendEmail(data);
 }
 
-export function sendResetPasswordEmail(email, token, fn) {
+export function sendResetPasswordEmail(email, token) {
     const data = {
-        from: 'tripletriad@gmail.com',
+        from: 'faster@gmail.com',
         to: email,
-        subject: 'Reset password for Triple Triad',
+        subject: 'Reset password for Faster Account',
         html: `
             Reset password with the following link:
             http://${host}:${port}/reset/${token}

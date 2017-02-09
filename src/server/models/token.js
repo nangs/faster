@@ -39,15 +39,15 @@ let TokenSchema = new mongoose.Schema({
     }
 });
 
-TokenSchema.statics.new = (userId, type, fn) => {
+TokenSchema.statics.new = (userId, type) => new Promise((resolve, reject) => {
     const token = new Token();
-    tokenGenerator(userId).then(token => {
-        token.token = token;
+    tokenGenerator(userId).then(t => {
+        token.token = t;
         token.userId = userId;
         token.type = type;
-        token.save(fn);
-    });
-};
+        resolve(token);
+    }).catch(err => reject(err));
+});
 
 Token = mongoose.model('Token', TokenSchema);
 
