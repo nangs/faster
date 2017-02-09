@@ -45,7 +45,10 @@ TokenSchema.statics.new = (userId, type) => new Promise((resolve, reject) => {
         token.token = t;
         token.userId = userId;
         token.type = type;
-        resolve(token);
+        token.save((err) => {
+            if(err) reject(err);
+            resolve(token);
+        })
     }).catch(err => reject(err));
 });
 
