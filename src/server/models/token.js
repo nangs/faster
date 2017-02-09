@@ -1,16 +1,6 @@
 import crypto from 'crypto';
 import mongoose from 'mongoose';
 
-
-const tokenFactory = (tokenType, id, fn) => {
-    tokenGenerator(id).then(token => {
-        tokenType.token = token;
-        tokenType.userId = id;
-        tokenType.save(fn);
-    });
-};
-
-
 const tokenGenerator = (userId) => new Promise(resolve => {
     crypto.randomBytes(48, (ex, buf) => {
         const token = buf.toString('base64')
@@ -21,7 +11,6 @@ const tokenGenerator = (userId) => new Promise(resolve => {
         resolve(`${userId}-${token}`);
     });
 });
-
 
 let Token;
 
