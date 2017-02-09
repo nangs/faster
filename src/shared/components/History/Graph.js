@@ -16,7 +16,8 @@ const renderGraph = (wpmData, accuracyData) => {
         xAxis: {
             title: {
                 text: 'Time'
-            }
+            },
+            reversed: true
         },
         yAxis: [
             {
