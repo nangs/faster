@@ -27,8 +27,11 @@ export class LanguageSelection extends Component {
         ));
         
         return (
-            <div id="language-selection">
-                {languages}
+            <div>
+                <div id="choose-lang-label">Choose a language</div>
+                <div id="language-selection">
+                    {languages}
+                </div>
             </div>
         )
     }
