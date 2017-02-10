@@ -10,7 +10,10 @@ const renderChart = (seriesData=[]) => {
             plotBackgroundColor: null,
             plotBorderWidth: null,
             plotShadow: false,
-            type: 'pie'
+            type: 'pie',
+            style: {
+                fontFamily: 'Raleway'
+            }
         },
         title: {
             text: 'Accuracy'

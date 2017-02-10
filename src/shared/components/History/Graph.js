@@ -5,6 +5,11 @@ const renderGraph = (wpmData, accuracyData) => {
     Highcharts.chart('graph-container', {
         exporting: { enabled: false },
         credits: { enabled: false },
+        chart: {
+            style: {
+                fontFamily: 'Raleway'
+            }
+        },
         title: {
             text: 'Proficency',
             x: -20 //center

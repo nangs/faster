@@ -4,7 +4,7 @@ const renderGuage = (wpm) => {
     const gaugeOptions = {
 
         chart: {
-            type: 'solidgauge'
+            type: 'solidgauge',
         },
 
         title: null,
@@ -58,6 +58,14 @@ const renderGuage = (wpm) => {
     };
 
     Highcharts.chart('container-speed', Highcharts.merge(gaugeOptions, {
+        chart: {
+            style: {
+                fontFamily: 'Raleway',
+                fontSize: '18px',
+                color: '#333333',
+                fill: '#333333'
+            }
+        },
         yAxis: {
             min: 0,
             max: 80,
