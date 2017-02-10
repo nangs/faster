@@ -24,6 +24,7 @@ export default (req, res) => {
             <link rel="icon" type="image/png" href="profile.png" />
             <link rel="stylesheet" type="text/css" href="styles.css" />
             <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+            <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
             <script src="https://code.highcharts.com/highcharts.js"></script>
             <script src="https://code.highcharts.com/highcharts-more.js"></script>
             <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
