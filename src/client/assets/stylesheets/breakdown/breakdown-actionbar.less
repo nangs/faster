@@ -3,8 +3,17 @@
     background-color: #31363e;
     color: #f2f2f2;
 
-    .logo svg {
-        width: 167px;
+    .toolbar {
+        padding-right: 0 !important;
+
+        svg {
+            fill: rgb(255,111,52);
+        }
+
+        .button {
+            height: 100%;
+            border-radius: 0;
+        }
     }
 
     .info-button {
@@ -52,36 +61,4 @@
 
 .application-container {
     margin-top: 60px;
-}
-
-.info-popover {
-
-    .popover-container > div {
-        display: flex;
-        align-items: center;
-        width: 500px;
-        height: 125px;
-        border: 1px solid black;
-        background: #ffffff;
-        color: #000000;
-    }
-
-    .info-content {
-        padding: 20px;
-
-        label {
-            margin-right: 15px;
-            font-weight: 600;
-        }
-
-        a {
-            cursor: pointer;
-        }
-
-        .send-feedback {
-            display: flex;
-            justify-content: center;
-            padding-top: 10px;
-        }
-    }
 }

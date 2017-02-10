@@ -5,3 +5,8 @@ export { default as DetailsIcon } from './DetailsIcon';
 export { default as ExclamationIcon } from './ExclamationIcon';
 export { default as LogoIcon } from './LogoIcon';
 export { default as SearchIcon } from './SearchIcon';
+export { default as HistoryIcon } from './HistoryIcon';
+export { default as UserIcon } from './UserIcon';
+export { default as KeyboardIcon } from './KeyboardIcon';
+export { default as LogoutIcon } from './LogoutIcon';
+export { default as FlagIcon } from './FlagIcon';

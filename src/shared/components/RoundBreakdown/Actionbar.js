@@ -2,9 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Toolbar, ToolbarGroup, ToolbarSpacer } from './../common/Toolbar';
-import { LogoIcon } from './../common/Icons';
+import { FlagIcon } from './../common/Icons';
 import { Button } from './../common/Buttons';
-import { InfoPopover } from './InfoPopover';
 import { Actions } from './../../state';
 
 @connect(() => ({}), dispatch => bindActionCreators(Actions, dispatch))
@@ -14,8 +13,8 @@ export class Actionbar extends React.Component {
             <header className="breakdown-actionbar">
                 <Toolbar className="nav-toolbar">
                     <ToolbarGroup>
+                        <FlagIcon />
                         <span className="logo">Results</span>
-                        <InfoPopover {...this.props} />
                     </ToolbarGroup>
                     <ToolbarSpacer />
                     <ToolbarGroup>

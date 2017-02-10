@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Actions } from './../../../state';
 import { MemberAvatar } from './../Avatar';
-import { CheckMarkIcon } from './../Icons';
+import { UserIcon, HistoryIcon, KeyboardIcon, LogoutIcon, CheckMarkIcon } from './../Icons';
 import { push } from 'react-router-redux';
 
 @connect(() => ({}), (dispatch) => bindActionCreators({ ...Actions, push }, dispatch))
@@ -48,10 +48,10 @@ export class Drawer extends Component {
                 </section>
                 <section id="menu">
                     <ul>
-                        <li onClick={this.viewProfile}><span>Account</span></li>
-                        <li onClick={this.viewPractice}><span>Practice</span></li>
-                        <li onClick={this.viewHistory}><span>History</span></li>
-                        <li onClick={logout}><span>Logout</span></li>
+                        <li onClick={this.viewProfile}><UserIcon /><span>Account</span></li>
+                        <li onClick={this.viewPractice}><KeyboardIcon /><span>Practice</span></li>
+                        <li onClick={this.viewHistory}><HistoryIcon /><span>History</span></li>
+                        <li onClick={logout}><LogoutIcon /><span>Logout</span></li>
                     </ul>
                 </section>
             </div>

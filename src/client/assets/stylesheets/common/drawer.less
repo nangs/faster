@@ -74,8 +74,9 @@
             padding: 0;
             margin-top: 0;
         }
-
+        @liWidth: ~"100% - 35px";
         li {
+            display: inline-block;
             width: 100%;
             transition: background .25s linear, border .25s linear;
             cursor: pointer;
@@ -88,9 +89,15 @@
                 border-color: white;
             }
 
+            svg {
+                vertical-align: middle;
+                margin-top: -5px;
+                fill: black;
+            }
+
             span {
-                display: block;
-                width: 100%;
+                display: inline-block;
+                width: calc(@liWidth);
                 padding-top: 5px;
                 padding-bottom: 5px;
                 padding-left: 20px;
@@ -99,6 +106,10 @@
             &:hover {
                 border-left: 5px solid #373737;
                 background: #93abdc;
+
+                svg {
+                    fill: white !important;
+                }
 
                 span {
                     color: white;
